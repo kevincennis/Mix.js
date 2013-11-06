@@ -15,3 +15,6 @@ Documentation (and lots of cleanup) forthcoming.
 ##### Start a local webserver at `http://localhost:8888`
 `npm start`
 
+### Usage
+
+After running `npm test`, just copy the `public` directory into the webroot of your server.

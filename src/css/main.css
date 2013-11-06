@@ -160,6 +160,7 @@ a {
   height: 30px;
   margin: 15px 0 0;
   position: relative;
+  -webkit-transform: translate3d(0,0,0);
 }
 
 .panner {

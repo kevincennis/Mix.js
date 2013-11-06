@@ -188,11 +188,15 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
           scaled = scaled * gain;
         }
         scaled = Math.max(0, scaled - ( scaled % 3 ));
-        ctx.clearRect(0, 0, width, height);
+        if ( this.dirty ) {
+          ctx.clearRect(0, 0, width, height);
+          this.dirty = false;
+        }
         if ( scaled >= 3 ) {
           ctx.drawImage(this.offscreen, 0, height - scaled, width, scaled,
             0, height - scaled, width, scaled
           );
+          this.dirty = true;
         }
         // save new peak
         if ( scaled > peak ) {
@@ -206,6 +210,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
           freshness = timeDiff < 650 ? 1 : 1 - ( ( timeDiff - 650 ) / 350 );
           ctx.fillStyle = 'rgba(238,119,85,' + freshness + ')';
           ctx.fillRect(0, height - peak - 1, width, 1);
+          this.dirty = true;
         // clear peak
         } else {
           this.peak = 0;

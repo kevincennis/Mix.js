@@ -77,6 +77,7 @@ App.vent.on('ready', function() {
   App.vuRight = $('.needle.right');
   App.trackViews.render();
   bindEvents();
+  App.mix.play();
 });
 
 // rAF loop for meters

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Mix.js</title>
+  <meta name="description" content="Mix.js">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="stylesheet" href="css/Mix.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <header>
+    <h1>Mix.js</h1>
+  </header>
+
+  <div id="loader">
+    <div class="loader-bar"></div>
+    <span>Loading Audio Assets...</span>
+  </div>
+
+  <div id="mixer">
+    <div id="meters">
+      <div class="vu">
+        <div class="mask"><div class="needle left" style="-webkit-transform: rotateZ(0deg);"></div></div>
+        <p class="vu-label">L</p>
+      </div>
+      <div class="vu">
+        <div class="mask"><div class="needle right" style="-webkit-transform: rotateZ(0deg);"></div></div>
+        <p class="vu-label">R</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="instructions">
+    play/pause : spacebar
+    <span class="pipe">|</span>
+    rewind : r
+    <span class="pipe">|</span>
+    -10s : left arrow
+    <span class="pipe">|</span>
+    +10s : right arrow
+  </p>
+
+  <a href="https://github.com/kevincennis/Mix.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
+
+  <script type="text/template" id="tmpl-track">
+    <div>
+      <div class="mute {{muted}}">M</div>
+      <div class="solo {{soloed}}">S</div>
+      <br class="clear" />
+      <div class="afl {{afl}}">PFL</div>
+      <div class="pan">
+        <div class="panner" style="-webkit-transform: rotate({{pan}}deg); -moz-transform: rotate({{pan}}deg);">
+          <div class="pan-indicator"></div>
+        </div>
+      </div>
+      <div class="track">
+        <div class="fader" style="top: {{gain}}px;"></div>
+        <canvas class="meter" width="8" height="280"></canvas>
+      </div>
+      <p class="label">{{name}}</p>
+    </div>
+  </script>
+  <script src="js/Mix.js"></script>
+</body>
+</body>
+</html>

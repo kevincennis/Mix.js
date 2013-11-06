@@ -1,0 +1,254 @@
+html {
+  background: -webkit-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
+  background:    -moz-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
+  background:         linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  -webkit-user-select: none;
+  height: 100%;
+}
+
+body {
+  min-width: 1320px;
+}
+
+header {
+  height: 98px;
+  margin: 30px auto;
+}
+
+header h1 {
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 40px;
+  font-weight: 300;
+  color: #ddd;
+}
+
+a {
+  text-decoration: underline;
+}
+
+#meters {
+  float: right;
+  margin: 8px;
+  clear: right;
+}
+
+.vu {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  background: url(../img/vu.png) top left no-repeat;
+}
+
+.vu:nth-child(1){
+  top: -10px;
+}
+
+.vu:nth-child(2){
+  top: 16px;
+}
+
+.mask {
+  position: relative;
+  height: 108px;
+  overflow: hidden;
+}
+
+.needle {
+  background: url(../img/needle.png) top left no-repeat;
+  width: 48px;
+  height: 51px;
+  position: absolute;
+  top: 64px;
+  left: 54px;
+  -webkit-transform-origin: 48px 51px;
+  -webkit-transform: rotateZ(0deg);
+  -webkit-transition: all 0.01s 0s;
+  -moz-transform-origin: 48px 51px;
+  -moz-transform: rotateZ(0deg);
+}
+
+.vu-label {
+  margin-top: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #111;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+#canvas {
+  display: none;
+  width: 600px;
+  margin: 50px auto 20px;
+  height: 65px;
+  border-bottom: 1px solid #333;
+}
+
+#mixer {
+  min-height: 412px;
+  min-width: 1000px;
+  display: inline-block;
+  visibility: hidden;
+  padding: 16px;
+  margin: 20px auto;
+  background: #292c30;
+  border-radius: 4px;
+  box-shadow: inset 0px 2px 6px rgba(0,0,0,0.5), 0px 2px 5px rgba(220,255,255,0.15);
+}
+
+.channel {
+  display: inline-block;
+  position: relative;
+  width: 55px;
+  margin: 0 6px;
+  padding: 6px 4px 32px 4px;
+  background: #23262a;
+  border-radius: 3px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+
+.mute, .solo {
+  width: 26px;
+  height: 20px;
+  float: left;
+  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+     background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 0 2px rgba(0,0,0,0.6);
+  cursor: pointer;
+  color: #131519;
+  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
+  font-weight: normal;
+}
+
+.mute {
+  border-radius: 2px 0 0 2px;
+  margin-left: 2px;
+}
+
+.solo {
+  border-radius: 0 3px 3px 0;
+}
+
+.mute.active, .solo.active, .afl.active {
+  color: #0cf;
+  box-shadow: 0 0 2px rgba(0,0,0,0.6), inset 0 0 5px rgba(0,0,0,0.3);
+}
+
+.afl {
+  width: 53px;
+  height: 20px;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+     background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+  line-height: 20px;
+  font-size: 12px;
+  margin: 6px auto;
+  box-shadow: 0 0 2px rgba(0,0,0,0.6);
+  cursor: pointer;
+  color: #131519;
+  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
+}
+
+.pan {
+  height: 30px;
+  margin: 15px 0 0;
+  position: relative;
+}
+
+.panner {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -12px;
+  background: -webkit-radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
+  background:    -moz-radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
+  background:         radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0,0,0,0.85);
+  cursor: pointer;
+}
+
+.pan-indicator {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  margin-left: -3px;
+  background: #15181b;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 2px rgba(0,0,0,0.3);
+}
+
+.track {
+  position: relative;
+  width: 8px;
+  height: 280px;
+  margin: 10px auto 0;
+  background: #15181b;
+  border-radius: 2px;
+}
+
+canvas {
+  width: 8px;
+  height: 280px;
+  border-radius: 2px;
+}
+
+.label {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  height: 22px;
+  margin: 0;
+  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+     background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+  color: #131519;
+  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 22px;
+  box-shadow: inset 0 0 2px hsl(214, 8%, 10%), 0 0 12px rgba(0,0,0,0.35);
+  border-radius: 0 0 3px 3px;
+}
+
+.fader {
+  position: absolute;
+  width: 35px;
+  height: 60px;
+  left: -13px;
+  top: 200px;
+  background-image: -webkit-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
+  background-image:    -moz-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.85);
+}
+
+.clear {
+  cear: both;
+}
+
+.instructions {
+  width: 600px;
+  margin: 30px auto 0;
+  color: #ccc;
+  font-size: 13px;
+  font-family: 'Open Sans';
+  text-align: center;
+}
+
+.pipe {
+  color: hsl(214, 8%, 28%);
+}
+

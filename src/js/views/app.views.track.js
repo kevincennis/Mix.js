@@ -187,7 +187,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         if ( afl ) {
           scaled = scaled * gain;
         }
-        scaled = Math.max(0, scaled + ( scaled % 3 ));
+        scaled = Math.max(0, scaled - ( scaled % 3 ));
         ctx.clearRect(0, 0, width, height);
         if ( scaled >= 3 ) {
           ctx.drawImage(this.offscreen, 0, height - scaled, width, scaled,

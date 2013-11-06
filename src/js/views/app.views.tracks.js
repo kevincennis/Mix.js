@@ -16,7 +16,6 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     unhide: function() {
-      console.log(this);
       this.$el.css('visibility', 'visible');
     }
 

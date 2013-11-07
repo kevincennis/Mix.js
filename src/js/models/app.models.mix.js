@@ -5,14 +5,26 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     url: 'mix.json',
 
     defaults: {
+      // mix name
       name      : 'Mix',
+      // master gain (0 - 1)
       gain      : 1,
+      // playback position (in seconds)
       position  : 0,
-      minTime   : 3,
+      // minimum allowed playback position
+      minTime   : 0,
+      // maximum allowed playback position
+      maxTime   : Infinity,
+      // internal value for playback scheduling
       startTime : 0,
+      // are we corrently playing?
       playing   : false,
+      // internal value for VU meters
       rmsLeft   : -48,
-      rmsRight  : -48
+      // internal value for VU meters
+      rmsRight  : -48,
+      // internally calculated song duration
+      duration  : Infinity
     },
 
     initialize: function() {
@@ -22,6 +34,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       this.updatePosition();
       App.vent.on('solo', this.soloMute.bind(this));
       App.vent.on('unsolo', this.soloMute.bind(this));
+      App.vent.on('anim-tick', this.updatePosition.bind(this));
       this.on('change:gain', this.setGain, this);
     },
 
@@ -53,14 +66,15 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     // optionally accepts a playback position in seconds
     play: function( pos ) {
       var now = App.ac.currentTime,
-        time = this.get('position');
+        time = this.get('position'),
+        max = this.get('tracks').maxLength();
       if ( !App.ready ) {
         throw new Error('Cannot play before App.ready');
       }
       if ( typeof pos == 'number' ) {
         this.set('position', time = Math.max(pos, this.get('minTime')));
       }
-      this.set({startTime: now - time, playing: true});
+      this.set({startTime: now - time, playing: true, duration: max});
       this.get('tracks').play();
       return this;
     },
@@ -87,8 +101,11 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     updatePosition: function(){
       var position = this.exactTime(),
         playing = this.get('playing');
-      this.set('position', position, {silent: true});
-      setTimeout(this.updatePosition.bind(this), 16);
+      if ( position > Math.min(this.get('maxTime'), this.get('duration')) ) {
+        this.play(0).pause();
+      } else {
+        this.set('position', position, {silent: true});
+      }
       return this;
     },
 
@@ -149,7 +166,6 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       out.tracks = tracks;
       delete out.rmsLeft;
       delete out.rmsRight;
-      delete out.playing;
       delete out.startTime;
       return out;
     }

@@ -17,7 +17,7 @@ App.module('Loader', function( Loader, App, Backbone, Marionette, $, _ ) {
   bindEvents = function() {
     App.vent.on('loaded', updatePercent);
     App.vent.on('ready', function(){
-      $elem.css('visibility', 'hidden');
+      $elem.hide();
     });
   };
 

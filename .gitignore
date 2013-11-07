@@ -4,4 +4,4 @@ node_modules
 public/js/*
 public/css/*
 test/test.js
-test/fixture.js
+test/fixtures.js

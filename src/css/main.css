@@ -1,3 +1,13 @@
+@font-face{
+  font-family: 'digital-7';
+  src: url("../fonts/digital-7.eot?#iefix") format('embedded-opentype')
+  ,url("../fonts/digital-7.woff") format('woff')
+  ,url("../fonts/digital-7.ttf") format('truetype'),
+  url("../fonts/digital-7.eot#svgFontName") format('svg');
+  font-weight: normal;
+  font-style: normal
+}
+
 html {
   background: -webkit-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
   background:    -moz-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
@@ -93,7 +103,7 @@ a {
   display: inline-block;
   visibility: hidden;
   padding: 16px;
-  margin: 20px auto;
+  margin: 0 auto 12px;
   background: #292c30;
   border-radius: 4px;
   box-shadow: inset 0px 2px 6px rgba(0,0,0,0.5), 0px 2px 5px rgba(220,255,255,0.15);
@@ -253,3 +263,108 @@ canvas {
   color: hsl(214, 8%, 28%);
 }
 
+#controls {
+  display: none;
+  width: 360px;
+  margin: 0 auto;
+  padding: 16px 12px 8px 10px;
+}
+
+.clock {
+  display: inline-block;
+  width: 180px;
+  height: 60px;
+  margin: 0;
+  background: -webkit-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  background:    -moz-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  background:         linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  border-radius: 3px;
+  box-shadow: inset 0px 2px 6px rgba(0,0,0,0.5);
+}
+
+.buttons {
+  display: inline-block;
+  position: relative;
+  top: -19px;
+}
+
+.start {
+  display: inline-block;
+  margin-left: 16px;
+  padding: 9px 14px;
+  background: url("../img/single_rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/single_rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/single_rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: 6px 9px,100%;
+     -moz-background-size: 6px 9px,100%;
+          background-size: 6px 9px,100%;
+  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.rw {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 9px 14px;
+  background: url("../img/rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  -webkit-background-size: 12px 9px,100%;
+     -moz-background-size: 12px 9px,100%;
+          background-size: 12px 9px,100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.play {
+  display: inline-block;
+  position: relative;
+  margin-left: 6px;
+  padding: 18px;
+  top: 8px;
+  background: url("../img/pause@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/pause@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/pause@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  -webkit-background-size: 14px 17px,100%;
+     -moz-background-size: 14px 17px,100%;
+          background-size: 14px 17px,100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.play.paused {
+  background: url("../img/play@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/play@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/play@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-position: 58% 50%;
+  background-repeat: no-repeat;
+  -webkit-background-size: 14px 17px,100%;
+     -moz-background-size: 14px 17px,100%;
+          background-size: 14px 17px,100%;
+}
+
+.ff {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 9px 14px;
+  background: url("../img/forward@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/forward@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background: url("../img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  -webkit-background-size: 12px 9px,100%;
+     -moz-background-size: 12px 9px,100%;
+          background-size: 12px 9px,100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  border-radius: 2px;
+  cursor: pointer;
+}

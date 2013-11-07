@@ -34,15 +34,9 @@
     </div>
   </div>
 
-  <p class="instructions">
-    play/pause : spacebar
-    <span class="pipe">|</span>
-    rewind : r
-    <span class="pipe">|</span>
-    -10s : left arrow
-    <span class="pipe">|</span>
-    +10s : right arrow
-  </p>
+  <div id="controls">
+
+  </div>
 
   <a href="https://github.com/kevincennis/Mix.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
 
@@ -64,7 +58,19 @@
       <p class="label">{{name}}</p>
     </div>
   </script>
+
+  <script type="text/template" id="tmpl-controls">
+    <canvas class="clock" width="180" height="60"></canvas>
+    <div class="buttons">
+      <div class="start"></div>
+      <div class="rw"></div>
+      <div class="play {{playing}}"></div>
+      <div class="ff"></div>
+    </div>
+  </script>
+
   <script src="js/Mix.js"></script>
+
 </body>
 </body>
 </html>

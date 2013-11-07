@@ -73,6 +73,9 @@ App.vent.on('ready', function() {
   App.trackViews = new App.Views.Tracks({
     collection: App.mix.attributes.tracks
   });
+  App.controlsView = new App.Views.Controls({
+    model: App.mix
+  });
   App.vuLeft = $('.needle.left');
   App.vuRight = $('.needle.right');
   App.trackViews.render();

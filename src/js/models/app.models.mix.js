@@ -102,7 +102,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       var position = this.exactTime(),
         playing = this.get('playing');
       if ( position > Math.min(this.get('maxTime'), this.get('duration')) ) {
-        this.play(0);
+        this.play(0).pause();
       } else {
         this.set('position', position, {silent: true});
       }
@@ -166,7 +166,6 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       out.tracks = tracks;
       delete out.rmsLeft;
       delete out.rmsRight;
-      delete out.playing;
       delete out.startTime;
       return out;
     }

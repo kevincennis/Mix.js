@@ -14,5 +14,6 @@
   // @include collections/app.collections.tracks.js
   // @include views/app.views.track.js
   // @include views/app.views.tracks.js
+  // @include views/app.views.controls.js
 
 }(this));

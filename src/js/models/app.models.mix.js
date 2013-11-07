@@ -5,15 +5,26 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     url: 'mix.json',
 
     defaults: {
+      // mix name
       name      : 'Mix',
+      // master gain (0 - 1)
       gain      : 1,
+      // playback position (in seconds)
       position  : 0,
-      minTime   : 3,
+      // minimum allowed playback position
+      minTime   : 0,
+      // maximum allowed playback position
       maxTime   : Infinity,
+      // internal value for playback scheduling
       startTime : 0,
+      // are we corrently playing?
       playing   : false,
+      // internal value for VU meters
       rmsLeft   : -48,
-      rmsRight  : -48
+      // internal value for VU meters
+      rmsRight  : -48,
+      // internally calculated song duration
+      duration  : Infinity
     },
 
     initialize: function() {

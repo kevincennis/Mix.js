@@ -3,15 +3,23 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
   var Track = Models.Track = Backbone.Model.extend({
 
     defaults: {
-      name   : 'Track',
-      gain   : 1, // 0 - 1 (1 being loudest)
-      pan    : 0, // -1 - 1 (left to right)
-      muted  : false,
-      _muted : false,
-      soloed : false,
-      rms    : -48,
-      afl    : true
+      // track name
+      name     : 'Track',
+      // track gain (0 - 1)
+      gain     : 1,
+      // track pan (-1 - 1, left to right)
+      pan      : 0,
+      // user muted
+      muted    : false,
+      // muted because another track is soloed (internal)
+      _muted   : false,
+      // soloed
+      soloed   : false,
+      // internal rms value
+      rms      : -48,
+      // after-fader listen
       afl      : true,
+      // internally calculated track duration
       duration : Infinity
     },
 

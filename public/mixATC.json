@@ -1,0 +1,109 @@
+
+{
+  "name": "1901",
+  "gain": 1,
+  "position": 0,
+  "minTime": 3,
+  "tracks": [
+    {
+      "name": "Mix L",
+      "path": "sounds\/ATCTwoMix_03.L.mp3",
+      "gain": 0.8,
+      "pan": -1,
+      "muted": false,
+      "_muted": false,
+      "soloed": true,
+      "afl": true
+    },
+    {
+      "name": "Mix R",
+      "path": "sounds\/ATCTwoMix_03.R.mp3",
+      "gain": 0.8,
+      "pan": 1,
+      "muted": false,
+      "_muted": false,
+      "soloed": true,
+      "afl": true
+    },
+    {
+      "name": "Drums",
+      "path": "sounds\/ATCDrums_03.mp3",
+       "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "Timp",
+      "path": "sounds\/ATCTimpani_03.mp3",
+       "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "Bass",
+      "path": "sounds\/ATCBass_03.mp3",
+       "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "Bar Gtr",
+      "path": "sounds\/ATCBaritoneGuitar_03.mp3",
+       "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "St Gtr",
+      "path": "sounds\/ATCPedalSteel_03.mp3",
+      "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "Piano",
+      "path": "sounds\/ATCPiano_03.mp3",
+ 	  "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "BG Vox",
+      "path": "sounds\/ATCBGVocals_03.mp3",
+      "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    },
+    {
+      "name": "Ld Vox",
+      "path": "sounds\/ATCLeadVocals_03.mp3",
+      "gain": 0.0,
+      "pan": 0,
+      "muted": false,
+      "_muted": false,
+      "soloed": false,
+      "afl": true
+    }
+  ]
+}

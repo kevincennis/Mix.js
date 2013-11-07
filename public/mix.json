@@ -3,6 +3,7 @@
   "gain": 1,
   "position": 0,
   "minTime": 3,
+  "maxTime": 192,
   "tracks": [
     {
       "name": "Kit L",

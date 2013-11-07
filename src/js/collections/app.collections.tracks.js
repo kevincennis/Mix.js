@@ -18,6 +18,14 @@ App.module('Collections', function( Collections, App, Backbone, Marionette, $, _
         track.pause();
       });
       return this;
+    },
+
+    // get max track duration (essentially song length)
+    maxLength: function() {
+      var durations = App.mix.get('tracks').map(function( track ) {
+        return track.get('duration');
+      });
+      return Math.max.apply(Math, durations);
     }
 
   });

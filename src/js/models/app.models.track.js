@@ -11,6 +11,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       soloed : false,
       rms    : -48,
       afl    : true
+      afl      : true,
+      duration : Infinity
     },
 
     initialize: function() {
@@ -86,6 +88,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     fetchAudio: function() {
       App.util.fetchAudioAsset(this.get('path'), function( buffer ) {
         this.buffer = buffer;
+        this.set('duration', buffer.duration);
         App.vent.trigger('loaded');
       }.bind(this));
       return this;

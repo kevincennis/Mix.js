@@ -60,8 +60,8 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       while ( i < height ) {
         hue += ( ( 1 - i / height ) * 0.6 );
         ctx.fillStyle = 'hsl(' + hue + ', 100%, 40%)';
-        ctx.fillRect(0, height - i, width, 2);
-        i += 3;
+        ctx.fillRect(0, height - i, width, 4);
+        i += 6;
       }
     },
 
@@ -187,12 +187,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         if ( afl ) {
           scaled = scaled * gain;
         }
-        scaled = Math.max(0, scaled - ( scaled % 3 ));
+        scaled = Math.max(0, scaled - ( scaled % 6 ));
         if ( this.dirty ) {
           ctx.clearRect(0, 0, width, height);
           this.dirty = false;
         }
-        if ( scaled >= 3 ) {
+        if ( scaled >= 6 ) {
           ctx.drawImage(this.offscreen, 0, height - scaled, width, scaled,
             0, height - scaled, width, scaled
           );
@@ -209,7 +209,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
           // for first 650 ms, use full alpha, then fade out
           freshness = timeDiff < 650 ? 1 : 1 - ( ( timeDiff - 650 ) / 350 );
           ctx.fillStyle = 'rgba(238,119,85,' + freshness + ')';
-          ctx.fillRect(0, height - peak - 1, width, 1);
+          ctx.fillRect(0, height - peak - 2, width, 2);
           this.dirty = true;
         // clear peak
         } else {

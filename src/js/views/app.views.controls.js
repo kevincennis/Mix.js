@@ -74,24 +74,24 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         ghost = ('88:88:88').split(''),
         arr = str.split('');
         i = 0,
-        x = 39;
+        x = 78;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '38px "digital-7"';
+      ctx.font = '76px "digital-7"';
       ctx.textAlign = 'right';
       // draw ghost 7-segment
       // faster to loop twice than to keep changing fillStyle
       while ( i < 8 ) {
         ctx.fillStyle = 'hsla(215, 77%, 76%, 0.085)';
-        ctx.fillText(ghost[i], x, 44);
-        x += ( ghost[++i] === ':' ? 10 : 20 );
+        ctx.fillText(ghost[i], x, 88);
+        x += ( ghost[++i] === ':' ? 20 : 40 );
       }
       i = 0;
-      x = 39;
+      x = 78;
       // draw actual position
       while ( i < 8 ) {
         ctx.fillStyle = 'hsl(215, 77%, 76%)';
-        ctx.fillText(arr[i], x, 44);
-        x += ( arr[++i] === ':' ? 10 : 20 );
+        ctx.fillText(arr[i], x, 88);
+        x += ( arr[++i] === ':' ? 20 : 40 );
       }
     },
 

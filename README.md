@@ -6,6 +6,10 @@ Multitrack mixing with the Web Audio API.
 
 Documentation (and lots of cleanup) forthcoming.
 
+### Demo
+
+[kevvv.in/mix](http://kevvv.in/mix)
+
 ### Getting started
 
 ##### Install Grunt

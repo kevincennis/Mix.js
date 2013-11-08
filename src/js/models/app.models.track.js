@@ -15,8 +15,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       _muted   : false,
       // soloed
       soloed   : false,
-      // internal rms value
-      rms      : -48,
+      // internal dBFS value
+      dBFS     : -48,
       // after-fader listen
       afl      : true,
       // internally calculated track duration
@@ -175,19 +175,22 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     },
 
     levels: function( e ) {
-      var floats;
+      var playing = App.mix.get('playing'),
+        len = this.timeData.length,
+        floats = new Array(len),
+        i = 0, dBFS;
       this.nodes.analyser.getByteTimeDomainData(this.timeData);
-      floats = Array.prototype.map.call(this.timeData, function( val ) {
-        return App.util.scale(val, 0, 255, -1, 1);
-      });
-      floats = App.util.rms(floats);
-      this.set('rms', App.mix.get('playing') ? floats : this.get('rms') - 0.8);
+      for ( ; i < len; ++i ) {
+        floats[i] = ( this.timeData[i] / 128 ) - 1;
+      }
+      dBFS = App.util.dBFS(floats);
+      this.set('dBFS', playing ? dBFS : this.get('dBFS') - 0.8);
       return this;
     },
 
     toJSON: function() {
       var out = _.extend({}, this.attributes);
-      delete out.rms;
+      delete out.dBFS;
       return out;
     }
 

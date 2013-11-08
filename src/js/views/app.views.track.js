@@ -179,12 +179,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       if ( typeof this.ui.canvas != 'string' ) {
         this.model.levels();
         var ctx = this.ui.canvas[0].getContext('2d'),
-          rms = this.model.get('rms'),
+          dBFS = this.model.get('dBFS'),
           gain = this.model.get('gain'),
           afl = this.model.get('afl'),
           height = this.ui.canvas[0].height,
           width = this.ui.canvas[0].width,
-          scaled = App.util.scale(-rms, 48, 0, 0, height),
+          scaled = App.util.scale(-dBFS, 48, 0, 0, height),
           now = Date.now(),
           peakTime = this.peakTime || -Infinity,
           peak = this.peak || 0,

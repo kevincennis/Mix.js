@@ -89,8 +89,8 @@ App.vent.on('anim-tick', function() {
     return;
   }
   App.mix.levels();
-  left = App.mix.get('rmsLeft');
-  right = App.mix.get('rmsRight');
+  left = App.mix.get('dBFSLeft');
+  right = App.mix.get('dBFSRight');
   left = Math.max(0, App.util.scale(left, -48, 0, 0, 60));
   right = Math.max(0, App.util.scale(right, -48, 0, 0, 60));
   App.vuLeft.css('transform', 'rotate(' + left + 'deg)');

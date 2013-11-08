@@ -20,9 +20,9 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       // are we corrently playing?
       playing   : false,
       // internal value for VU meters
-      rmsLeft   : -48,
+      dBFSLeft   : -48,
       // internal value for VU meters
-      rmsRight  : -48,
+      dBFSRight  : -48,
       // internally calculated song duration
       duration  : Infinity
     },
@@ -130,22 +130,24 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       return this;
     },
 
-    // get rms values
+    // get dBFS values
     levels: function( e ) {
-      var left, right;
+      var playing = this.get('playing'),
+        len = this.timeDataL.length,
+        right = new Array(len),
+        left = new Array(len),
+        i = 0;
       this.nodes.analyserL.getByteTimeDomainData(this.timeDataL);
       this.nodes.analyserR.getByteTimeDomainData(this.timeDataR);
-      left = Array.prototype.map.call(this.timeDataL, function( val ) {
-        return App.util.scale(val, 0, 255, -1, 1);
-      });
-      right = Array.prototype.map.call(this.timeDataR, function( val ) {
-        return App.util.scale(val, 0, 255, -1, 1);
-      });
-      left = App.util.rms(left);
-      right = App.util.rms(right);
+      for ( ; i < len; ++i ) {
+        left[i] = ( this.timeDataL[i] / 128 ) - 1;
+        right[i] = ( this.timeDataR[i] / 128 ) - 1;
+      }
+      left = App.util.dBFS(left);
+      right = App.util.dBFS(right);
       this.set({
-        rmsLeft: this.get('playing') ? left : this.get('rmsLeft') - 0.8,
-        rmsRight: this.get('playing') ? right : this.get('rmsRight') - 0.8
+        dBFSLeft: playing ? left : this.get('dBFSLeft') - 0.8,
+        dBFSRight: playing ? right : this.get('dBFSRight') - 0.8
       });
       return this;
     },
@@ -164,8 +166,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
           return track.toJSON();
         });
       out.tracks = tracks;
-      delete out.rmsLeft;
-      delete out.rmsRight;
+      delete out.dBFSLeft;
+      delete out.dBFSRight;
       delete out.startTime;
       return out;
     },

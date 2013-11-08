@@ -1,5 +1,7 @@
 App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   var Track = Views.Track = Marionette.ItemView.extend({
     template: '#tmpl-track',
 
@@ -176,7 +178,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     drawMeter: function() {
-      if ( typeof this.ui.canvas != 'string' ) {
+      if ( typeof this.ui.canvas !== 'string' ) {
         this.model.levels();
         var ctx = this.ui.canvas[0].getContext('2d'),
           dBFS = this.model.get('dBFS'),

@@ -1,4 +1,7 @@
-App.module('Collections', function( Collections, App, Backbone, Marionette, $, _ ) {
+App.module('Collections', function( Collections, App, Backbone,
+  Marionette, $, _ ) {
+
+  'use strict';
 
   var Tracks = Collections.Tracks = Backbone.Collection.extend({
 

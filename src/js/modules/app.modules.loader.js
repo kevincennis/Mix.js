@@ -1,12 +1,8 @@
 App.module('Loader', function( Loader, App, Backbone, Marionette, $, _ ) {
 
-  var
+  'use strict';
 
-  // jQuery objects
-  $elem, $bar,
-
-  // Methods
-  init, bindEvents, updatePercent;
+  var $elem, $bar, init, bindEvents, updatePercent;
 
   init = function() {
     $elem = $('#loader');

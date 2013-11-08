@@ -1,5 +1,7 @@
 App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   // convert a value from one scale to another
   // e.g. App.util.scale(-96, -192, 0, 0, 100) to convert
   // -96 from dB (-192 - 0) to percentage (0 - 100)
@@ -40,11 +42,10 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
     var args = _.toArray(arguments),
       sr = App.ac.sampleRate,
       channels = args.length,
-      len = Math.max.apply(Math, _.map(args, getLength)),
+      len = Math.max.apply(Math, _.map(args, function( ab ) {
+        return ab.length;
+      })),
       buf = App.ac.createBuffer(channels, len, sr);
-    function getLength( ab ) {
-      return ab.length;
-    }
     while ( channels-- ) {
       buf.getChannelData(channels).set(args[channels]);
     }
@@ -62,7 +63,7 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
       len = end - start,
       buf = App.ac.createBuffer(channels, len, sr),
       clone;
-    while ( channels-- ){
+    while ( channels-- ) {
       clone = ab.getChannelData(channels).subarray(from, to);
       buf.getChannelData(channels).set(clone);
     }
@@ -93,19 +94,19 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
 
   // calculate the dBFS value of an ArrayBuffer
   util.dBFS = function( buffer ) {
-      var len = buffer.length,
-        total = 0,
-        i = 0,
-        rms,
-        db;
+    var len = buffer.length,
+      total = 0,
+      i = 0,
+      rms,
+      db;
 
-      while ( i < len ) {
-        total += ( buffer[i] * buffer[i++] );
-      }
+    while ( i < len ) {
+      total += ( buffer[i] * buffer[i++] );
+    }
 
-      rms = Math.sqrt( total / len );
-      db  = 20 * ( Math.log(rms) / Math.LN10 );
-      return Math.max(-192, db);
+    rms = Math.sqrt( total / len );
+    db  = 20 * ( Math.log(rms) / Math.LN10 );
+    return Math.max(-192, db);
   };
 
   // format seconds as 00:00:00
@@ -113,10 +114,10 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
     var ms = Math.floor( ( seconds * 1000 ) % 1000 ),
       s = Math.floor( seconds % 60 ),
       m = Math.floor( ( seconds * 1000 / ( 1000 * 60 ) ) % 60 ),
-      strFormat = "MM:SS:XX";
-    if( s < 10 ) s = "0" + s;
-    if( m < 10 ) m = "0" + m;
-    if( ms < 10 ) ms = "0" + ms;
+      strFormat = 'MM:SS:XX';
+    s = s < 10 ? '0' + s : s;
+    m = m < 10 ? '0' + m : m;
+    ms = ms < 10  ? '0' + ms : ms;
     strFormat = strFormat.replace(/MM/, m);
     strFormat = strFormat.replace(/SS/, s);
     strFormat = strFormat.replace(/XX/, ms.toString().slice(0,2));

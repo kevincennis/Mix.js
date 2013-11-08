@@ -1,5 +1,7 @@
 App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   var Tracks = Views.Tracks = Marionette.CollectionView.extend({
     itemView: Views.Track,
 
@@ -12,7 +14,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
     animTick: function() {
       App.vent.trigger('anim-tick');
-      requestAnimationFrame(this.animTick.bind(this));
+      window.requestAnimationFrame(this.animTick.bind(this));
     },
 
     unhide: function() {

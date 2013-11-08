@@ -1,5 +1,7 @@
 App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   var Controls = Views.Controls = Marionette.ItemView.extend({
     template: '#tmpl-controls',
 

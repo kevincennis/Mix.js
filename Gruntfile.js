@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+  'use strict';
+
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
@@ -32,7 +34,8 @@ module.exports = function(grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          'test/**/*.js',
+          'test/fixtures/**/*.js',
+          'test/tests/**/*.js',
           'src/**/*.js'
         ],
         options: {
@@ -46,11 +49,63 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: [
-        'Gruntfile.js',
-        'test/**/*.js',
-        'src/**/*.js'
-      ]
+      options: {
+        camelcase: true,
+        curly: true,
+        eqeqeq: true,
+        eqnull: true,
+        funcscope: true,
+        indent: 2,
+        latedef: true,
+        maxlen: 80,
+        newcap: true,
+        quotmark: 'single',
+        strict: true,
+        trailing: true,
+        undef: true
+      },
+      gruntFile: {
+        files: {src: ['Gruntfile.js']},
+        options: {
+          globals: {
+            module: true
+          }
+        }
+      },
+      fixtures: {
+        files: {src: ['text/fixtures/**/*.js']},
+        options: {
+          browser: true,
+          jquery: true,
+          globals: {
+
+          }
+        }
+      },
+      tests: {
+        files: {src:['text/tests/**/*.js']},
+        options: {
+          browser: true,
+          jquery: true,
+          globals: {
+            equal: true,
+            expect: true,
+            test: true
+          }
+        }
+      },
+      src: {
+        files: {src: ['src/**/*.js']},
+        options: {
+          browser: true,
+          jquery: true,
+          globals: {
+            App: true,
+            Backbone: true,
+            Mustache: true
+          }
+        }
+      }
     },
 
     preprocess: {

@@ -1,10 +1,3 @@
-window.AudioContext = (
-  window.AudioContext ||
-  window.webkitAudioContext ||
-  window.mozAudioContext ||
-  FakeContext
-);
-
 function FakeContext() {
   this.sampleRate = 44100;
 }
@@ -35,3 +28,10 @@ FakeContext.prototype.createChannelSplitter = function() {
     connect: function(){}
   };
 };
+
+window.AudioContext = (
+  window.AudioContext ||
+  window.webkitAudioContext ||
+  window.mozAudioContext ||
+  FakeContext
+);

@@ -1,5 +1,7 @@
 App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   var Mix = Models.Mix = Backbone.Model.extend({
 
     url: 'mix.json',
@@ -71,7 +73,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       if ( !App.ready ) {
         throw new Error('Cannot play before App.ready');
       }
-      if ( typeof pos == 'number' ) {
+      if ( typeof pos === 'number' ) {
         this.set('position', time = Math.max(pos, this.get('minTime')));
       }
       this.set({startTime: now - time, playing: true, duration: max});
@@ -83,7 +85,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     pause: function() {
       this.get('tracks').pause();
       this.set('playing', false);
-      App.vent.trigger("mix-pause");
+      App.vent.trigger('mix-pause');
       return this;
     },
 

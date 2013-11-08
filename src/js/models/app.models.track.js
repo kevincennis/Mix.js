@@ -1,5 +1,7 @@
 App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
 
+  'use strict';
+
   var Track = Models.Track = Backbone.Model.extend({
 
     defaults: {

@@ -1,3 +1,4 @@
+/* jshint maxlen:false */
 (function( window, undefined ) {
 
   // @include ../../bower_components/jquery/jquery.js

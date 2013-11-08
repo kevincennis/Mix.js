@@ -2,7 +2,7 @@
  * Unit tests for App.util
  */
 
-;(function(){
+(function(){
 
   test('app.util.scale', function() {
     var scaled;

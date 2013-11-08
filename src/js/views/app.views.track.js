@@ -5,6 +5,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
     events: {
       'mousedown .fader'  : 'enableDrag',
+      'dblclick .fader'   : 'resetFader',
       'mousedown .panner' : 'enableDrag',
       'dblclick .panner'  : 'resetPanner',
       'click .mute'       : 'mute',
@@ -140,6 +141,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       } else if ( this.pannerCanDrag ) {
         this.dragPanner(ev);
       }
+    },
+
+    resetFader: function() {
+      var top = App.util.scale(1, 0, 1.15, 220, 0);
+      this.$el.find('.fader').css('top', top + 'px');
+      this.model.set('gain', 1);
     },
 
     resetPanner: function() {

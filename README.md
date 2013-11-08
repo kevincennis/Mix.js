@@ -1,4 +1,6 @@
-## Mix.js
+# Mix.js
+
+[![travis](https://travis-ci.org/kevincennis/Mix.js.png)](https://travis-ci.org/kevincennis/Mix.js)
 
 Multitrack mixing with the Web Audio API.
 

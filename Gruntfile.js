@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         src: [
           'Gruntfile.js',
           'test/**/*.js',
-          'src/**/*.js',
+          'src/**/*.js'
         ],
         options: {
           newline: true,
@@ -43,6 +43,14 @@ module.exports = function(grunt) {
           ignores: ['js-comments']
         }
       }
+    },
+
+    jshint: {
+      files: [
+        'Gruntfile.js',
+        'test/**/*.js',
+        'src/**/*.js'
+      ]
     },
 
     preprocess: {
@@ -106,6 +114,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-lintspaces');
   grunt.loadNpmTasks('grunt-preprocess');
 
@@ -113,6 +122,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'connect:test',
     'lintspaces',
+    'jshint',
     'preprocess:src',
     'concat',
     'uglify',
@@ -121,6 +131,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'lintspaces',
+    'jshint',
     'preprocess:src',
     'concat',
     'uglify'

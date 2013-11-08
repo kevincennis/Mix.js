@@ -72,7 +72,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         pos = this.model.get('position'),
         str = App.util.formatTime(pos),
         ghost = ('88:88:88').split(''),
-        arr = str.split('');
+        arr = str.split(''),
         i = 0,
         x = 78;
       ctx.clearRect(0, 0, canvas.width, canvas.height);

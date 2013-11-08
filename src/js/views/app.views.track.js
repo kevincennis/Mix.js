@@ -51,8 +51,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         width = canvas.width,
         hue = 180,
         i = 0,
-        ctx,
-        hue;
+        ctx;
       this.offscreen = document.createElement('canvas');
       this.offscreen.width = canvas.width;
       this.offscreen.height = canvas.height;

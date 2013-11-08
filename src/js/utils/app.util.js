@@ -121,6 +121,6 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
     strFormat = strFormat.replace(/SS/, s);
     strFormat = strFormat.replace(/XX/, ms.toString().slice(0,2));
     return strFormat;
-  }
+  };
 
 });

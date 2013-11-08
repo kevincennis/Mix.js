@@ -23,6 +23,7 @@
     "bower": "~1.2.7",
     "grunt-cli": "~0.1.9",
     "grunt-lintspaces": "~0.2.202",
-    "grunt-preprocess": "~3.0.1"
+    "grunt-preprocess": "~3.0.1",
+    "grunt-contrib-jshint": "~0.7.1"
   }
 }

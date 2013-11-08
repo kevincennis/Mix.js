@@ -108,6 +108,7 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
       return Math.max(-192, db);
   };
 
+  // format seconds as 00:00:00
   util.formatTime = function( seconds ) {
     var ms = Math.floor( ( seconds * 1000 ) % 1000 ),
       s = Math.floor( seconds % 60 ),

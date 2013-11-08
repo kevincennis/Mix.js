@@ -60,7 +60,6 @@ module.exports = function(grunt) {
         maxlen: 80,
         newcap: true,
         quotmark: 'single',
-        strict: true,
         trailing: true,
         undef: true
       },
@@ -73,7 +72,7 @@ module.exports = function(grunt) {
         }
       },
       fixtures: {
-        files: {src: ['text/fixtures/**/*.js']},
+        files: {src: ['test/fixtures/**/*.js']},
         options: {
           browser: true,
           jquery: true,
@@ -83,11 +82,12 @@ module.exports = function(grunt) {
         }
       },
       tests: {
-        files: {src:['text/tests/**/*.js']},
+        files: {src:['test/tests/**/*.js']},
         options: {
           browser: true,
           jquery: true,
           globals: {
+            App: true,
             equal: true,
             expect: true,
             test: true
@@ -99,6 +99,7 @@ module.exports = function(grunt) {
         options: {
           browser: true,
           jquery: true,
+          strict: true,
           globals: {
             App: true,
             Backbone: true,

@@ -168,7 +168,15 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       delete out.rmsRight;
       delete out.startTime;
       return out;
-    }
+    },
+
+    persist: _.debounce(function() {
+      var data = App.mix.toJSON();
+      delete data.position;
+      delete data.playing;
+      delete data.duration;
+      location.hash = JSON.stringify(data);
+    }, 500)
 
   });
 

@@ -100,7 +100,19 @@ App.vent.on('anim-tick', function() {
 
 // create the mix and start the app on DOM ready
 $(function() {
+  var hash = location.hash.substr(1), blob, url;
   App.mix = new App.Models.Mix();
+  try {
+    JSON.parse(hash);
+  } catch (ex) {
+    hash = false;
+    location.hash = '';
+  }
+  if ( location.hash ) {
+    blob = new Blob([hash]);
+    url = window.URL.createObjectURL(blob);
+    App.mix.url = url;
+  }
   App.mix.fetch();
   App.start();
 });

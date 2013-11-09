@@ -1,8 +1,8 @@
 module.exports = {
   options: {
     banner: '<%= banner %>',
-    sourceMap: 'public/js/Mix.js.map',
-    sourceMappingURL: 'Mix.js.map',
+    sourceMap: 'public/js/Mix.min.map',
+    sourceMappingURL: 'Mix.min.map',
     sourceMapPrefix: 2
   },
   dist: {

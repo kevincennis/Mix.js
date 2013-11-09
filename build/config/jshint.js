@@ -14,7 +14,7 @@ module.exports = {
     undef: true
   },
   build: {
-    files: {src: ['Gruntfile.js']},
+    files: {src: ['build/**/*.js']},
     options: {
       node: true
     }

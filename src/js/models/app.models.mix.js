@@ -114,20 +114,23 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     // selectively apply/remove mutes depending on which tracks
     // are soloed and unsoloed
     soloMute: function() {
-      var unsoloed = this.get('tracks').where({soloed: false}),
-        soloed = this.get('tracks').where({soloed: true}),
+      var unsoloed, soloed, _muted;
+      if ( this.get('tracks') ) {
+        unsoloed = this.get('tracks').where({soloed: false});
+        soloed = this.get('tracks').where({soloed: true});
         _muted = this.get('tracks').where({_muted: true});
-      // apply _mute to non-soloed tracks
-      if ( soloed.length ){
-        unsoloed.forEach(function( track ){
-          track._mute();
-        });
-      }
-      // remove _mute when nothing is soloed
-      if ( !soloed.length ) {
-        _muted.forEach(function( track ) {
-          track._unmute();
-        });
+        // apply _mute to non-soloed tracks
+        if ( soloed.length ){
+          unsoloed.forEach(function( track ){
+            track._mute();
+          });
+        }
+        // remove _mute when nothing is soloed
+        if ( !soloed.length ) {
+          _muted.forEach(function( track ) {
+            track._unmute();
+          });
+        }
       }
       return this;
     },

@@ -115,9 +115,9 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     },
 
     // start playback
-    play: function() {
+    play: function( time ) {
       this.pause().connect();
-      this.nodes.source.start(App.ac.currentTime, App.mix.exactTime());
+      this.nodes.source.start(App.ac.currentTime, time);
       return this;
     },
 

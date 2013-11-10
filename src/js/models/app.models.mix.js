@@ -77,7 +77,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
         this.set('position', time = Math.max(pos, this.get('minTime')));
       }
       this.set({startTime: now - time, playing: true, duration: max});
-      this.get('tracks').play();
+      this.get('tracks').play(time);
       return this;
     },
 

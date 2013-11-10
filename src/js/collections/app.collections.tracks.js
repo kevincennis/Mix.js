@@ -8,9 +8,9 @@ App.module('Collections', function( Collections, App, Backbone,
     model: App.Models.Track,
 
     // begin playback of all tracks
-    play: function() {
+    play: function( time ) {
       this.each(function( track ) {
-        track.play();
+        track.play(time);
       });
       return this;
     },

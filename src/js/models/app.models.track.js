@@ -34,7 +34,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       this.timeData = new Uint8Array(this.fftSize);
       this.on('change:gain', this.setGain, this);
       this.on('change:pan', this.setPanning, this);
-      this.on('change:gain change:pan change:solo change:mute change:afl',
+      this.on('change:gain change:pan change:soloed change:muted change:afl',
         App.mix.persist, App.mix
       );
     },

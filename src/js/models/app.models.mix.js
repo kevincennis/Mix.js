@@ -145,8 +145,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       this.nodes.analyserL.getByteTimeDomainData(this.timeDataL);
       this.nodes.analyserR.getByteTimeDomainData(this.timeDataR);
       for ( ; i < len; ++i ) {
-        left[i] = ( this.timeDataL[i] / 128 ) - 1;
-        right[i] = ( this.timeDataR[i] / 128 ) - 1;
+        left[i] = ( this.timeDataL[i] * 2 / 255 ) - 1;
+        right[i] = ( this.timeDataR[i] * 2 / 255 ) - 1;
       }
       left = App.util.dBFS(left);
       right = App.util.dBFS(right);

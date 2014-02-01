@@ -118,6 +118,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     play: function( time ) {
       this.pause().connect();
       this.nodes.source.start(App.ac.currentTime, time);
+      this.paused = false;
       return this;
     },
 
@@ -125,6 +126,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     pause: function() {
       if ( this.nodes.source ) {
         this.nodes.source.stop(0);
+        this.nodes.source = null;
       }
       return this;
     },

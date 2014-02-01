@@ -1,7 +1,7 @@
 module.exports = {
   css: {
     src: [
-      'src/css/normalize.css',
+      'src/css/normalize-edit.css',
       'src/css/main.css',
       'src/css/loader.css'
     ],

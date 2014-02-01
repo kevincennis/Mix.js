@@ -1,3 +1,9 @@
+/*
+
+  Fonts
+
+ */
+
 @font-face{
   font-family: 'digital-7';
   src: url("../fonts/digital-7.eot?#iefix") format('embedded-opentype')
@@ -8,36 +14,56 @@
   font-style: normal
 }
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+
+/*
+
+  Additional HTML element styling beyond normalization/reset
+
+*/
+
 html {
-  background: -webkit-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
-  background:    -moz-linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
-  background:         linear-gradient(bottom, #15181b 0%, #1d1f23 100%);
+  background: -webkit-linear-gradient(bottom, #15181b 0%, #1d1f23 100%) no-repeat fixed;
+  background:    -moz-linear-gradient(bottom, #15181b 0%, #1d1f23 100%) no-repeat fixed;
+  background:         linear-gradient(bottom, #15181b 0%, #1d1f23 100%) no-repeat fixed;
   font-family: Helvetica, Arial, sans-serif;
   text-align: center;
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
   -webkit-user-select: none;
-  height: 100%;
 }
 
 body {
-  min-width: 1320px;
+  margin: 0;
 }
 
 header {
-  height: 98px;
+  height: 80px;
   margin: 30px auto;
 }
 
 header h1 {
-  text-align: center;
+  color: #ddd;
   font-family: "Open Sans";
   font-size: 40px;
   font-weight: 300;
-  color: #ddd;
+  margin: 0;
+  text-align: center;
 }
 
-a {
-  text-decoration: underline;
+canvas {
+  border-radius: 2px;
+  height: 280px;
+  width: 8px;
 }
+
+
+/*
+
+  UI Styling
+
+ */
 
 #meters {
   float: right;
@@ -61,18 +87,18 @@ a {
 }
 
 .mask {
-  position: relative;
   height: 108px;
   overflow: hidden;
+  position: relative;
 }
 
 .needle {
   background: url(../img/needle.png) top left no-repeat;
-  width: 48px;
   height: 51px;
+  left: 54px;
   position: absolute;
   top: 64px;
-  left: 54px;
+  width: 48px;
   -webkit-transform-origin: 48px 51px;
   -webkit-transform: rotateZ(0deg);
   -webkit-transition: all 0.01s 0s;
@@ -81,89 +107,85 @@ a {
 }
 
 .vu-label {
-  margin-top: 20px;
+  color: #111;
   font-size: 26px;
   font-weight: bold;
-  color: #111;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+  margin-top: 20px;
   text-align: center;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
 }
 
 #canvas {
-  display: none;
-  width: 600px;
-  margin: 50px auto 20px;
-  height: 65px;
   border-bottom: 1px solid #333;
+  display: none;
+  height: 65px;
+  margin: 50px auto 20px;
+  width: 600px;
 }
 
 #mixer {
-  min-height: 412px;
-  min-width: 1000px;
-  display: inline-block;
-  visibility: hidden;
-  padding: 16px;
-  margin: 0 auto 12px;
   background: #292c30;
   border-radius: 4px;
   box-shadow: inset 0px 2px 6px rgba(0,0,0,0.5), 0px 2px 5px rgba(220,255,255,0.15);
+  display: inline-block;
+  margin: 0 auto 12px;
+  min-height: 412px;
+  min-width: 1200px;
+  padding: 16px;
+  visibility: hidden;
 }
 
 .channel {
-  display: inline-block;
-  position: relative;
-  width: 55px;
-  margin: 0 6px;
-  padding: 6px 4px 32px 4px;
   background: #23262a;
   border-radius: 3px;
   box-shadow: inset 0 0 12px rgba(0,0,0,0.35);
+  display: inline-block;
+  margin: 0 6px;
   overflow: hidden;
+  padding: 6px 4px 32px 4px;
+  position: relative;
+  width: 55px;
+}
+
+
+
+/* buttons */
+.btn {
+     -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+  background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
+  box-shadow: 0 0 2px rgba(0,0,0,0.6);
+  color: #131519;
+  cursor: pointer;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  text-shadow: 0 1px 1px rgba(200,200,240,.15);
 }
 
 .mute, .solo {
-  width: 26px;
-  height: 20px;
   float: left;
-  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
-     background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
-  line-height: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  box-shadow: 0 0 2px rgba(0,0,0,0.6);
-  cursor: pointer;
-  color: #131519;
-  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
-  font-weight: normal;
+  width: 50%;
 }
 
 .mute {
   border-radius: 2px 0 0 2px;
-  margin-left: 2px;
 }
 
 .solo {
-  border-radius: 0 3px 3px 0;
-}
-
-.mute.active, .solo.active, .afl.active {
-  color: #0cf;
-  box-shadow: 0 0 2px rgba(0,0,0,0.6), inset 0 0 5px rgba(0,0,0,0.3);
+  border-radius: 0 2px 2px 0;
 }
 
 .afl {
-  width: 53px;
-  height: 20px;
-  border-radius: 2px;
-  background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
-     background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
-  line-height: 20px;
-  font-size: 12px;
   margin: 6px auto;
-  box-shadow: 0 0 2px rgba(0,0,0,0.6);
-  cursor: pointer;
-  color: #131519;
-  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
+  width: 53px;
+}
+
+.mute.active, .solo.active, .afl.active {
+  box-shadow: 0 0 2px rgba(0,0,0,0.6), inset 0 0 5px rgba(0,0,0,0.3);
+  color: #0cf;
 }
 
 .pan {
@@ -174,89 +196,83 @@ a {
 }
 
 .panner {
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  top: 0px;
-  left: 50%;
-  margin-left: -14px;
   background: -webkit-radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
   background:    -moz-radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
   background:         radial-gradient(center, ellipse cover, hsl(214, 8%, 87%) 0%,hsl(214, 8%, 60%) 100%);
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(0,0,0,0.85);
   cursor: pointer;
+  height: 28px;
+  left: 50%;
+  margin-left: -14px;
+  position: absolute;
+  top: 0px;
+  width: 28px;
 }
 
 .pan-indicator {
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  top: 3px;
-  left: 50%;
-  margin-left: -3px;
   background: #15181b;
   border-radius: 50%;
   box-shadow: inset 0px 0px 2px rgba(0,0,0,0.3);
+  height: 6px;
+  left: 50%;
+  margin-left: -3px;
+  position: absolute;
+  top: 3px;
+  width: 6px;
 }
 
 .track {
-  position: relative;
-  width: 8px;
-  height: 280px;
-  margin: 10px auto 0;
   background: #15181b;
   border-radius: 2px;
-}
-
-canvas {
-  width: 8px;
   height: 280px;
-  border-radius: 2px;
+  margin: 10px auto 0;
+  position: relative;
+  width: 8px;
 }
 
 .label {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  height: 22px;
-  margin: 0;
   background: -webkit-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
      background: -moz-linear-gradient(top, hsl(214, 8%, 28%) 0%, hsl(210, 8%, 20%) 100%);
-  color: #131519;
-  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 22px;
-  box-shadow: inset 0 0 2px hsl(214, 8%, 10%), 0 0 12px rgba(0,0,0,0.35);
   border-radius: 0 0 3px 3px;
+  bottom: 0;
+  box-shadow: inset 0 0 2px hsl(214, 8%, 10%), 0 0 12px rgba(0,0,0,0.35);
+  color: #131519;
+  font-size: 12px;
+  font-weight: normal;
+  height: 22px;
+  left: 0;
+  line-height: 22px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  text-shadow: 0 1px 1px rgba(200,200,240,0.15);
 }
 
 .fader {
-  position: absolute;
-  width: 35px;
+  background-image:    -moz-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
+  background-image: -webkit-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.85);
+  cursor: pointer;
   height: 60px;
   left: -13px;
+  position: absolute;
   top: 200px;
-  background-image: -webkit-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
-  background-image:    -moz-linear-gradient(top, hsl(214, 8%, 59%) 0%, hsl(214, 8%, 95%) 15%, hsl(214, 8%, 71%) 35%, hsl(214, 8%, 63%) 50%, hsl(214, 8%, 71%) 65%, hsl(214, 8%, 95%) 85%, hsl(214, 8%, 59%) 100%);
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.85);
+  width: 35px;
 }
 
 .clear {
-  cear: both;
+  clear: both;
 }
 
 .instructions {
-  width: 600px;
-  margin: 30px auto 0;
   color: #ccc;
-  font-size: 13px;
   font-family: 'Open Sans';
+  font-size: 13px;
+  margin: 30px auto 0;
   text-align: center;
+  width: 600px;
 }
 
 .pipe {
@@ -265,106 +281,78 @@ canvas {
 
 #controls {
   display: none;
-  width: 360px;
   margin: 0 auto;
   padding: 16px 12px 8px 10px;
+  width: 360px;
 }
 
 .clock {
-  display: inline-block;
-  width: 180px;
-  height: 60px;
-  margin: 0;
-  background: -webkit-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
-  background:    -moz-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
-  background:         linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  background-image: -webkit-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  background-image:    -moz-linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
+  background-image:         linear-gradient(top, hsl(219, 69%, 16%) 0%, hsl(214, 71%, 18%) 51%, hsl(219, 69%, 16%) 52%, hsl(214, 71%, 18%) 100%);
   border-radius: 3px;
   box-shadow: inset 0px 2px 6px rgba(0,0,0,0.5);
+  display: inline-block;
+  height: 60px;
+  margin: 0;
+  width: 180px;
 }
 
+/* bottom buttons */
 .buttons {
   display: inline-block;
   position: relative;
-  top: -19px;
+  top: -26px;
+}
+
+.btn-cntrl {
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  display: inline-block;
+  margin-left: 6px;
 }
 
 .start {
-  display: inline-block;
+  background-image: url("../img/single_rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/single_rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/single_rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-size: 6px 9px,100%;
   margin-left: 16px;
   padding: 9px 14px;
-  background: url("../img/single_rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/single_rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/single_rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-position: center center;
-  background-repeat: no-repeat;
-  -webkit-background-size: 6px 9px,100%;
-     -moz-background-size: 6px 9px,100%;
-          background-size: 6px 9px,100%;
-  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
-  border-radius: 2px;
-  cursor: pointer;
 }
 
 .rw {
-  display: inline-block;
-  margin-left: 6px;
+  background-image: url("../img/rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-size: 12px 9px,100%;
   padding: 9px 14px;
-  background: url("../img/rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  -webkit-background-size: 12px 9px,100%;
-     -moz-background-size: 12px 9px,100%;
-          background-size: 12px 9px,100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
-  border-radius: 2px;
-  cursor: pointer;
 }
 
 .play {
-  display: inline-block;
-  position: relative;
-  margin-left: 6px;
-  padding: 18px;
-  top: 8px;
-  background: url("../img/pause@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/pause@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/pause@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  -webkit-background-size: 14px 17px,100%;
-     -moz-background-size: 14px 17px,100%;
-          background-size: 14px 17px,100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
+  background-image: url("../img/pause@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/pause@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/pause@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-size: 14px 17px,100%;
   border-radius: 50%;
-  cursor: pointer;
+  padding: 18px;
+  position: relative;
+  /*top: 8px; */
 }
 
 .play.paused {
-  background: url("../img/play@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/play@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/play@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-position: 58% 50%;
-  background-repeat: no-repeat;
-  -webkit-background-size: 14px 17px,100%;
-     -moz-background-size: 14px 17px,100%;
-          background-size: 14px 17px,100%;
+  background-image: url("../img/play@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/play@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/play@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-size: 14px 17px,100%;
 }
 
 .ff {
-  display: inline-block;
-  margin-left: 6px;
+  background-image: url("../img/forward@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/forward@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("../img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-size: 12px 9px,100%;
   padding: 9px 14px;
-  background: url("../img/forward@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/forward@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background: url("../img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  -webkit-background-size: 12px 9px,100%;
-     -moz-background-size: 12px 9px,100%;
-          background-size: 12px 9px,100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  box-shadow: inset 0 -2px hsla(0, 0%, 0%, 0.1), 0 0 8px 2px hsla(0, 0%, 0%, 0.75);
-  border-radius: 2px;
-  cursor: pointer;
 }

@@ -1,10 +1,15 @@
 /*
+
+  Edited Normalize:
+
+
   Didn't need all of normalize.css, so just took the bits that were needed
   and removed the rest.
 
   Elements that receive additional styling like <html>, <body>, etc., have
   been moved into the main style sheet to cut down on repetition of
   selector declarations
+
 */
 
 footer, header, main, nav, section {

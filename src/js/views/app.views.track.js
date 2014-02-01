@@ -26,21 +26,14 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     initialize: function() {
-      var thisView = this;
-      App.vent.on('mixer-mouseup', function() {
-        thisView.disableDrag();
-      });
-      App.vent.on('mixer-mousemove', function( ev ) {
-        thisView.dragHandler(ev);
-      });
-      App.vent.on('anim-tick', function() {
-        thisView.drawMeter();
-      });
+      App.vent.on('mixer-mouseup', this.disableDrag.bind(this));
+      App.vent.on('mixer-mousemove', this.dragHandler.bind(this));
+      App.vent.on('anim-tick', this.drawMeter.bind(this));
       App.vent.on('mix-pause', function() {
         setTimeout(function(){
-          thisView.drawMeter();
-        }, 50);
-      });
+          this.drawMeter();
+        }.bind(this), 50);
+      }.bind(this));
     },
 
     onBeforeRender: function() {

@@ -77,7 +77,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
         this.set('position', time = Math.max(pos, this.get('minTime')));
       }
       this.set({startTime: now - time, playing: true, duration: max});
-      this.get('tracks').play();
+      this.get('tracks').play(time);
       return this;
     },
 
@@ -114,20 +114,23 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     // selectively apply/remove mutes depending on which tracks
     // are soloed and unsoloed
     soloMute: function() {
-      var unsoloed = this.get('tracks').where({soloed: false}),
-        soloed = this.get('tracks').where({soloed: true}),
+      var unsoloed, soloed, _muted;
+      if ( this.get('tracks') ) {
+        unsoloed = this.get('tracks').where({soloed: false});
+        soloed = this.get('tracks').where({soloed: true});
         _muted = this.get('tracks').where({_muted: true});
-      // apply _mute to non-soloed tracks
-      if ( soloed.length ){
-        unsoloed.forEach(function( track ){
-          track._mute();
-        });
-      }
-      // remove _mute when nothing is soloed
-      if ( !soloed.length ) {
-        _muted.forEach(function( track ) {
-          track._unmute();
-        });
+        // apply _mute to non-soloed tracks
+        if ( soloed.length ){
+          unsoloed.forEach(function( track ){
+            track._mute();
+          });
+        }
+        // remove _mute when nothing is soloed
+        if ( !soloed.length ) {
+          _muted.forEach(function( track ) {
+            track._unmute();
+          });
+        }
       }
       return this;
     },
@@ -142,8 +145,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       this.nodes.analyserL.getByteTimeDomainData(this.timeDataL);
       this.nodes.analyserR.getByteTimeDomainData(this.timeDataR);
       for ( ; i < len; ++i ) {
-        left[i] = ( this.timeDataL[i] / 128 ) - 1;
-        right[i] = ( this.timeDataR[i] / 128 ) - 1;
+        left[i] = ( this.timeDataL[i] * 2 / 255 ) - 1;
+        right[i] = ( this.timeDataR[i] * 2 / 255 ) - 1;
       }
       left = App.util.dBFS(left);
       right = App.util.dBFS(right);

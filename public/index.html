@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <title>Mix.js</title>
   <meta name="description" content="Multitrack mixing in JavaScript with the Web Audio API">
-    <link rel="stylesheet" href="css/Mix.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/Mix.css">
 </head>
 <body>
 
@@ -38,15 +37,14 @@
   <div id="controls"></div>
 
   <a href="https://github.com/kevincennis/Mix.js">
-    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub">
+    <img style="position: fixed; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub">
   </a>
 
   <script type="text/template" id="tmpl-track">
     <div>
-      <div class="mute {{muted}}">M</div>
-      <div class="solo {{soloed}}">S</div>
-      <br class="clear" />
-      <div class="afl {{afl}}">PFL</div>
+      <button class="btn mute {{muted}}">M</button>
+      <button class="btn solo {{soloed}}">S</button>
+      <button class="btn afl {{afl}}">PFL</button>
       <div class="pan">
         <div class="panner" style="-webkit-transform: rotate({{pan}}deg); -moz-transform: rotate({{pan}}deg);">
           <div class="pan-indicator"></div>
@@ -63,10 +61,10 @@
   <script type="text/template" id="tmpl-controls">
     <canvas class="clock" width="360" height="120"></canvas>
     <div class="buttons">
-      <div class="start"></div>
-      <div class="rw"></div>
-      <div class="play {{playing}}"></div>
-      <div class="ff"></div>
+      <button class="btn-cntrl start"></button>
+      <button class="btn-cntrl rw"></button>
+      <button class="btn-cntrl play {{playing}}"></button>
+      <button class="btn-cntrl ff"></button>
     </div>
   </script>
 

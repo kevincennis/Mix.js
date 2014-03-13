@@ -34,7 +34,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       this.timeData = new Uint8Array(this.fftSize);
       this.on('change:gain', this.setGain, this);
       this.on('change:pan', this.setPanning, this);
-      this.on('change:gain change:pan change:solo change:mute change:afl',
+      this.on('change:gain change:pan change:soloed change:muted change:afl',
         App.mix.persist, App.mix
       );
     },
@@ -115,9 +115,9 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     },
 
     // start playback
-    play: function() {
+    play: function( time ) {
       this.pause().connect();
-      this.nodes.source.start(App.ac.currentTime, App.mix.exactTime());
+      this.nodes.source.start(App.ac.currentTime, time);
       return this;
     },
 
@@ -125,6 +125,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     pause: function() {
       if ( this.nodes.source ) {
         this.nodes.source.stop(0);
+        this.nodes.source = null;
       }
       return this;
     },
@@ -183,7 +184,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
         i = 0, dBFS;
       this.nodes.analyser.getByteTimeDomainData(this.timeData);
       for ( ; i < len; ++i ) {
-        floats[i] = ( this.timeData[i] / 128 ) - 1;
+        floats[i] = ( this.timeData[i] * 2 / 255 ) - 1;
       }
       dBFS = App.util.dBFS(floats);
       this.set('dBFS', playing ? dBFS : this.get('dBFS') - 0.8);

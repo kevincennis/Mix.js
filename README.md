@@ -30,3 +30,19 @@ Documentation (and lots of cleanup) forthcoming.
 
 To save a mix, open the dev tools in your browser and enter `JSON.stringify(App.mix.toJSON(), null, ' ')`
 and copy the output into `mix.json`.
+
+### Contributing
+
+Pull requests are completely welcome and appreciated. Before submitting, please make sure that your 
+code conforms to the [Idiomatic.js](https://github.com/rwaldron/idiomatic.js/) style guide.
+
+### Tests
+
+Unfotunately, PhantomJS doesn't currently support the Web Audio API, which makes meaningful testing
+for most of Mix.js pretty much impossible. That said, if you write code which *can* be tested, please
+submit tests with your pull request.
+
+### Bugs
+
+Bugs should be filed on this repo's [Issues page](https://github.com/kevincennis/Mix.js/issues). Please
+include any relevant details (browser, OS, etc.) as well as steps to reproduce.

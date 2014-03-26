@@ -200,7 +200,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
           this.dirty = true;
         }
         // save new peak
-        if ( scaled > peak ) {
+        if ( scaled >= peak ) {
           peak = this.peak = scaled;
           this.peakTime = now;
           timeDiff = 0;

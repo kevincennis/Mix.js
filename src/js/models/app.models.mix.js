@@ -19,7 +19,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       maxTime   : Infinity,
       // internal value for playback scheduling
       startTime : 0,
-      // are we corrently playing?
+      // are we currently playing?
       playing   : false,
       // internal value for VU meters
       dBFSLeft   : -48,

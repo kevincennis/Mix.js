@@ -182,7 +182,17 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       delete data.position;
       delete data.playing;
       delete data.duration;
-      location.hash = JSON.stringify(data);
+      data = JSON.stringify(data);
+      $.ajax({
+        type: 'POST',
+        url: 'http://api.myjson.com/bins',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        data: data,
+        success: function( response ) {
+          location.hash = response.uri.split('/').pop();
+        }
+      });
     }, 500)
 
   });

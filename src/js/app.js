@@ -105,19 +105,28 @@
   $(function() {
     var hash = location.hash.substr(1), blob, url;
     App.mix = new App.Models.Mix();
-    try {
-      JSON.parse(hash);
-    } catch ( ex ) {
-      hash = false;
-      location.hash = '';
+    function startup() {
+      App.mix.fetch();
+      App.start();
     }
     if ( location.hash ) {
-      blob = new Blob([hash]);
-      url = window.URL.createObjectURL(blob);
-      App.mix.url = url;
+      $.ajax({
+        url: 'http://api.myjson.com/bins/' + hash,
+        type: 'GET',
+        dataType: 'json',
+        success: function( json ) {
+          try {
+            blob = new Blob([JSON.stringify(json)]);
+            url = window.URL.createObjectURL(blob);
+            App.mix.url = url;
+          } catch ( e ) {}
+          startup();
+        },
+        error: startup
+      });
+    } else {
+      startup();
     }
-    App.mix.fetch();
-    App.start();
   });
 
 }());

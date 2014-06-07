@@ -6,13 +6,18 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     template: '#tmpl-track',
 
     events: {
-      'mousedown .fader'  : 'enableDrag',
-      'dblclick .fader'   : 'resetFader',
-      'mousedown .panner' : 'enableDrag',
-      'dblclick .panner'  : 'resetPanner',
-      'click .mute'       : 'mute',
-      'click .solo'       : 'solo',
-      'click .afl'        : 'afl'
+      'mousedown .fader'   : 'enableDrag',
+      'touchstart .fader'  : 'enableDrag',
+      'dblclick .fader'    : 'resetFader',
+      'mousedown .panner'  : 'enableDrag',
+      'touchstart .panner' : 'enableDrag',
+      'dblclick .panner'   : 'resetPanner',
+      'click .mute'        : 'mute',
+      'touchstart .mute'   : 'mute',
+      'click .solo'        : 'solo',
+      'touchstart .solo'   : 'solo',
+      'click .afl'         : 'afl',
+      'touchstart .afl'    : 'afl'
     },
 
     ui: {
@@ -83,7 +88,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     enableDrag: function( ev ) {
-      var $elem = $(ev.currentTarget), deg;
+      var $elem = $(ev.currentTarget), deg, touch;
       if ( $elem.hasClass('fader') ) {
         this.faderCanDrag = true;
         this.dragState.px = parseInt($elem.css('top'), 10);
@@ -93,8 +98,14 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
         this.dragState.height = parseInt($elem.height());
         this.dragState.offset = $elem.offset();
       }
-      this.dragState.x = ev.pageX;
-      this.dragState.y = ev.pageY;
+      if ( ev.type === 'touchstart' && ev.originalEvent.changedTouches ) {
+        touch = ev.originalEvent.changedTouches[0];
+        this.dragState.x = touch.pageX;
+        this.dragState.y = touch.pageY;
+      } else {
+        this.dragState.x = ev.pageX;
+        this.dragState.y = ev.pageY;
+      }
       this.dragState.$target = $elem;
     },
 
@@ -106,7 +117,8 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     dragFader: function( ev, max ) {
-      var pos = ev.pageY,
+      var touch = ev.type === 'touchmove' && ev.originalEvent.changedTouches,
+        pos = touch && touch[0] ? touch[0].pageY : ev.pageY,
         state = this.dragState.y,
         delta = pos - state,
         css = this.dragState.px + delta;
@@ -117,11 +129,14 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     dragPanner: function( ev ) {
-      var width = this.dragState.width,
+      var touch = ev.type === 'touchmove' && ev.originalEvent.changedTouches,
+        width = this.dragState.width,
         height = this.dragState.height,
         offset = this.dragState.offset,
-        a = offset.left + ( width / 2 ) - ev.pageX,
-        b = offset.top + ( height / 2 ) - ev.pageY,
+        top = touch && touch[0] ? touch[0].pageY : ev.pageY,
+        left = touch && touch[0] ? touch[0].pageX : ev.pageX,
+        a = offset.left + ( width / 2 ) - left,
+        b = offset.top + ( height / 2 ) - top,
         deg = -1 * Math.atan2( a, b ) * ( 180 / Math.PI );
       if ( deg >= -150 && deg <= 150 ) {
         this.dragState.$target.css('transform', 'rotate(' + deg + 'deg)');
@@ -148,8 +163,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       this.model.set('pan', 0);
     },
 
-    mute: function() {
-      var muted = this.model.get('muted');
+    mute: function( ev ) {
+      var muted;
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
+      muted = this.model.get('muted');
       if ( muted ) {
         this.model.unmute();
       } else {
@@ -157,8 +176,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       }
     },
 
-    solo: function() {
-      var soloed = this.model.get('soloed');
+    solo: function( ev ) {
+      var soloed;
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
+      soloed = this.model.get('soloed');
       if ( soloed ) {
         this.model.unsolo();
       } else {
@@ -166,19 +189,23 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       }
     },
 
-    afl: function() {
+    afl: function( ev ) {
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
       this.model.set('afl', !this.model.get('afl'));
     },
 
     drawMeter: function() {
       if ( typeof this.ui.canvas !== 'string' ) {
         this.model.levels();
-        var ctx = this.ui.canvas[0].getContext('2d'),
-          dBFS = this.model.get('dBFS'),
-          gain = this.model.get('gain'),
-          afl = this.model.get('afl'),
-          height = this.ui.canvas[0].height,
-          width = this.ui.canvas[0].width,
+        var canvas = this.ui.canvas[0],
+          ctx = canvas.getContext('2d'),
+          dBFS = this.model.attributes.dBFS,
+          gain = this.model.attributes.gain,
+          afl = this.model.attributes.afl,
+          height = this.cHeight || ( this.cHeight = canvas.height ),
+          width = this.cWidth || ( this.cWidth = canvas.width ),
           scaled = App.util.scale(-dBFS, 48, 0, 0, height),
           now = Date.now(),
           peakTime = this.peakTime || -Infinity,

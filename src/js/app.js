@@ -44,10 +44,13 @@
           break;
       }
     });
-    $(window).on('mousemove', function( ev ) {
+    $(window).on('mousemove touchmove', function( ev ) {
       App.vent.trigger('mixer-mousemove', ev);
+      if ( ev.type === 'touchmove' ) {
+        ev.preventDefault();
+      }
     });
-    $(window).on('mouseup', function( ev ) {
+    $(window).on('mouseup touchend', function( ev ) {
       App.vent.trigger('mixer-mouseup', ev);
     });
   }
@@ -83,13 +86,15 @@
     App.vuRight = $('.needle.right');
     App.trackViews.render();
     bindEvents();
-    App.mix.play();
+    if ( !('ontouchstart' in window) ) {
+      App.mix.play();
+    }
   });
 
   // rAF loop for meters
   App.vent.on('anim-tick', function() {
     var left, right;
-    if ( !App.vuLeft || !App.vuRight ) {
+    if ( !App.vuLeft || !App.vuRight || window.innerWidth <= 1200 ) {
       return;
     }
     App.mix.levels();

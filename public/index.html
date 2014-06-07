@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Mix.js</title>
   <meta name="description" content="Multitrack mixing in JavaScript with the Web Audio API">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="css/Mix.css">
 </head>
 <body>
@@ -51,8 +52,8 @@
         </div>
       </div>
       <div class="track">
-        <div class="fader" style="top: {{gain}}px;"></div>
         <canvas class="meter" width="8" height="280"></canvas>
+        <div class="fader" style="top: {{gain}}px;"></div>
       </div>
       <p class="label">{{name}}</p>
     </div>

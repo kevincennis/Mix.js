@@ -114,14 +114,14 @@ App.module('util', function( util, App, Backbone, Marionette, $, _ ) {
     var ms = Math.floor( ( seconds * 1000 ) % 1000 ),
       s = Math.floor( seconds % 60 ),
       m = Math.floor( ( seconds * 1000 / ( 1000 * 60 ) ) % 60 ),
-      strFormat = 'MM:SS:XX';
+      str = '';
     s = s < 10 ? '0' + s : s;
     m = m < 10 ? '0' + m : m;
     ms = ms < 10  ? '0' + ms : ms;
-    strFormat = strFormat.replace(/MM/, m);
-    strFormat = strFormat.replace(/SS/, s);
-    strFormat = strFormat.replace(/XX/, ms.toString().slice(0,2));
-    return strFormat;
+    str += ( m + ':' );
+    str += ( s + ':');
+    str += ms.toString().slice(0,2);
+    return str;
   };
 
 });

@@ -8,10 +8,14 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     el: '#controls',
 
     events: {
-      'click .play'  : 'toggle',
-      'click .start' : 'start',
-      'click .rw'    : 'rewind',
-      'click .ff'    : 'fastForward'
+      'click .play'       : 'toggle',
+      'touchstart .play'  : 'toggle',
+      'click .start'      : 'start',
+      'touchstart .start' : 'start',
+      'click .rw'         : 'rewind',
+      'touchstart .rw'    : 'rewind',
+      'click .ff'         : 'fastForward',
+      'touchstart .ff'    : 'fastForward'
     },
 
     ui: {
@@ -27,6 +31,7 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       App.vent.on('anim-tick', function() {
         this.updatePosition();
       }.bind(this));
+      this.render();
     },
 
     serializeData: function() {
@@ -36,6 +41,9 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     },
 
     toggle: function( ev ) {
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
       if ( this.model.get('playing') ) {
         this.model.pause();
       } else {
@@ -43,15 +51,22 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       }
     },
 
-    start: function() {
+    start: function( ev ) {
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
       this.model.play(0);
       if ( !this.model.get('playing') ) {
         this.model.pause();
       }
     },
 
-    rewind: function() {
-      var pos = this.model.get('position');
+    rewind: function( ev ) {
+      var pos;
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
+      pos = this.model.get('position');
       if ( this.model.get('playing') ) {
         this.model.play(pos - 10);
       }  else {
@@ -59,8 +74,12 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       }
     },
 
-    fastForward: function() {
-      var pos = this.model.get('position');
+    fastForward: function( ev ) {
+      var pos;
+      if ( ev && 'ontouchstart' in window && ev.type === 'click' ) {
+        return;
+      }
+      pos = this.model.get('position');
       if ( this.model.get('playing') ) {
         this.model.play(pos + 10);
       }  else {
@@ -71,9 +90,9 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
     updatePosition: function() {
       var canvas = this.ui.clock[0],
         ctx = canvas.getContext('2d'),
-        pos = this.model.get('position'),
+        pos = this.model.attributes.position,
         str = App.util.formatTime(pos),
-        ghost = ('88:88:88').split(''),
+        ghost = ['8', '8', ':', '8', '8', ':', '8', '8'],
         arr = str.split(''),
         i = 0,
         x = 78;
@@ -82,16 +101,16 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
       ctx.textAlign = 'right';
       // draw ghost 7-segment
       // faster to loop twice than to keep changing fillStyle
+      ctx.fillStyle = 'hsla(215, 77%, 76%, 0.085)';
       while ( i < 8 ) {
-        ctx.fillStyle = 'hsla(215, 77%, 76%, 0.085)';
         ctx.fillText(ghost[i], x, 88);
         x += ( ghost[++i] === ':' ? 20 : 40 );
       }
       i = 0;
       x = 78;
       // draw actual position
+      ctx.fillStyle = 'hsl(215, 77%, 76%)';
       while ( i < 8 ) {
-        ctx.fillStyle = 'hsl(215, 77%, 76%)';
         ctx.fillText(arr[i], x, 88);
         x += ( arr[++i] === ':' ? 20 : 40 );
       }

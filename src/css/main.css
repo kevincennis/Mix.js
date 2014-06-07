@@ -37,6 +37,11 @@ canvas {
   border-radius: 2px;
   height: 280px;
   width: 8px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+button {
+  outline: none;
 }
 
 
@@ -241,6 +246,7 @@ canvas {
   position: absolute;
   top: 200px;
   width: 35px;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 .clear {
@@ -277,6 +283,7 @@ canvas {
   height: 60px;
   margin: 0;
   width: 180px;
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 /* bottom buttons */
@@ -336,4 +343,16 @@ canvas {
   background-image: url("../img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 12px 9px,100%;
   padding: 9px 14px;
+}
+
+@media all and (max-width: 1200px) {
+  header {
+    margin: 20px 0 15px;
+  }
+  #mixer {
+    min-width: 900px;
+  }
+  #meters {
+    display: none;
+  }
 }

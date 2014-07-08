@@ -179,9 +179,9 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     },
 
     persist: _.debounce(function() {
-      var self = this,
-        data = App.mix.toJSON(),
-        binURI = this.get('binURI');
+      var self = App.mix,
+        data = self.toJSON(),
+        binURI = self.get('binURI');
       delete data.position;
       delete data.playing;
       delete data.duration;

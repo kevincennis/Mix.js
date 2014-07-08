@@ -179,7 +179,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
     },
 
     persist: _.debounce(function() {
-      var self = this, 
+      var self = this,
         data = App.mix.toJSON(),
         binURI = this.get('binURI');
       delete data.position;

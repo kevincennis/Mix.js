@@ -194,8 +194,10 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
         dataType: 'json',
         data: data,
         success: function( response ) {
-          self.set('binURI', response.uri, {silent: true});
-          location.hash = response.uri.split('/').pop();
+          if ( response.uri ) {
+            self.set('binURI', response.uri, {silent: true});
+            location.hash = response.uri.split('/').pop();
+          }
         }
       });
     }, 500)

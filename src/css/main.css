@@ -87,7 +87,7 @@ button {
   width: 48px;
   -webkit-transform-origin: 48px 51px;
   -webkit-transform: rotateZ(0deg);
-  -webkit-transition: all 0.01s 0s;
+  -webkit-transition: all 0.1s 0s;
   -moz-transform-origin: 48px 51px;
   -moz-transform: rotateZ(0deg);
 }

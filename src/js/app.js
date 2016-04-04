@@ -79,7 +79,7 @@
     if ( ++App.loaded === App.tracks ) {
       App.ready = true;
       App.vent.trigger('ready');
-      top = App.util.scale( App.mix.get('gain'), 0, 5, 314, 0 );
+      top = App.util.scale( App.mix.get('gain'), 0, 1.5, 314, 0 );
       $('#master .fader').css( 'top', top + 'px' );
     }
   });
@@ -110,8 +110,8 @@
     App.mix.levels();
     left = App.mix.get('dBFSLeft');
     right = App.mix.get('dBFSRight');
-    left = Math.max( -20, App.util.scale(left, -20, 0, 0, 60 ) );
-    right = Math.max( -20, App.util.scale(right, -20, 0, 0, 60 ) );
+    left = Math.max( -20, App.util.scale(left + 20, -20, 0, 0, 60 ) );
+    right = Math.max( -20, App.util.scale(right + 20, -20, 0, 0, 60 ) );
 
     App.vuLeftData.unshift( left );
     App.vuRightData.unshift( right );
@@ -131,9 +131,6 @@
     right = App.vuRightData.reduce(function( sum, curr ) {
       return sum + curr;
     }, 0 ) / App.vuRightData.length;
-
-    App.vuLeftData.unshift( left );
-    App.vuRightData.unshift( right );
 
     App.vuLeft.css('transform', 'rotate(' + left + 'deg)');
     App.vuRight.css('transform', 'rotate(' + right + 'deg)');
@@ -183,11 +180,11 @@
     css = Math.min( 314, css );
     css = Math.max( 0, css );
     App.dragState.$target.css('top', css + 'px');
-    App.mix.set( 'gain', App.util.scale( css, 0, 314, 5, 0 ) );
+    App.mix.set( 'gain', App.util.scale( css, 0, 314, 1.5, 0 ) );
   };
 
   App.resetFader = function() {
-    var top = App.util.scale( 1, 0, 5, 314, 0 );
+    var top = App.util.scale( 1, 0, 1.5, 314, 0 );
     $('#master .fader').css( 'top', top + 'px' );
     App.mix.set( 'gain', 1 );
   };

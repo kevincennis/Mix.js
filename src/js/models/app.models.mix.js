@@ -38,6 +38,7 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       App.vent.on('unsolo', this.soloMute.bind(this));
       App.vent.on('anim-tick', this.updatePosition.bind(this));
       this.on('change:gain', this.setGain, this);
+      this.on('change:gain', this.persist, this);
     },
 
     // create audio nodes
@@ -151,8 +152,8 @@ App.module('Models', function( Models, App, Backbone, Marionette, $, _ ) {
       left = App.util.dBFS(left);
       right = App.util.dBFS(right);
       this.set({
-        dBFSLeft: playing ? left : this.get('dBFSLeft') - 0.8,
-        dBFSRight: playing ? right : this.get('dBFSRight') - 0.8
+        dBFSLeft: playing ? left : -192,
+        dBFSRight: playing ? right : -192
       });
       return this;
     },

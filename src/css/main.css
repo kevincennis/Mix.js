@@ -57,6 +57,23 @@ button {
   clear: right;
 }
 
+#master {
+  float: right;
+  background: #23262a;
+  border-radius: 3px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.35);
+  display: inline-block;
+  margin: 0 26px;
+  overflow: hidden;
+  padding: 6px 4px 32px 4px;
+  position: relative;
+  width: 55px;
+}
+
+#master .track {
+  height: 374px;
+}
+
 .vu {
   width: 200px;
   height: 200px;
@@ -87,7 +104,6 @@ button {
   width: 48px;
   -webkit-transform-origin: 48px 51px;
   -webkit-transform: rotateZ(0deg);
-  -webkit-transition: all 0.1s 0s;
   -moz-transform-origin: 48px 51px;
   -moz-transform: rotateZ(0deg);
 }

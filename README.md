@@ -11,13 +11,8 @@ Documentation (and lots of cleanup) forthcoming.
 [kevvv.in/mix](http://kevvv.in/mix)
 
 ### Getting started (for Developers)
-
-##### Install Grunt
-`npm install -g grunt-cli` (may require `sudo`)
 ##### Install Node dependencies
 `npm install`
-##### Build & Test
-`npm test` or `grunt`
 ##### Start a local webserver at `http://localhost:8888`
 `npm start`
 

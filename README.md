@@ -11,15 +11,16 @@ Documentation (and lots of cleanup) forthcoming.
 [kevvv.in/mix](http://kevvv.in/mix)
 
 ### Getting started (for Developers)
-
-##### Install Grunt
-`npm install -g grunt-cli` (may require `sudo`)
 ##### Install Node dependencies
 `npm install`
-##### Build & Test
-`npm test` or `grunt`
 ##### Start a local webserver at `http://localhost:8888`
 `npm start`
+
+##### Build for production mode (minified)
+`npm run build`
+
+##### Test
+`npm test`
 
 ### Usage (for... Users)
 
@@ -28,7 +29,7 @@ Documentation (and lots of cleanup) forthcoming.
 * Edit `mix.json` to reflect your track names and audio URLs
 * Copy the directory to your webserver
 
-To save a mix, open the dev tools in your browser and enter `JSON.stringify(App.mix.toJSON(), null, ' ')`
+To save a mix, open the dev tools in your browser and enter `JSON.stringify(mix.toJSON(), null, ' ')`
 and copy the output into `mix.json`.
 
 ### Contributing

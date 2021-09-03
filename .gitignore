@@ -1,7 +1,10 @@
 .DS_Store
 bower_components
 node_modules
-public/js/*
-public/css/*
+out
 test/test.js
 test/fixtures.js
+public/*.png
+public/*.woff
+public/*.ttf
+public/*.eot

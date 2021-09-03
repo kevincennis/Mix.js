@@ -1,26 +1,27 @@
-App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
+import App from '../appInstance'
+import { CollectionView } from 'backbone.marionette'
+import _ from 'lodash'
+import Track from './app.views.track'
 
-  'use strict';
+const Tracks = CollectionView.extend({
+	childView: Track,
 
-  var Tracks = Views.Tracks = Marionette.CollectionView.extend({
-    itemView: Views.Track,
+	el: '#mixer',
 
-    el: '#mixer',
+	initialize: function() {
+		this.animTick();
+		this.unhide();
+	},
 
-    initialize: function() {
-      this.animTick();
-      this.unhide();
-    },
+	animTick: function() {
+		App.trigger('anim-tick');
+		window.requestAnimationFrame(this.animTick.bind(this));
+	},
 
-    animTick: function() {
-      App.vent.trigger('anim-tick');
-      window.requestAnimationFrame(this.animTick.bind(this));
-    },
-
-    unhide: function() {
-      this.$el.css('visibility', 'visible');
-    }
-
-  });
+	unhide: function() {
+		this.$el.css('visibility', 'visible');
+	}
 
 });
+
+export default Tracks

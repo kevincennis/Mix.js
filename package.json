@@ -10,6 +10,7 @@
     }
   ],
   "scripts": {
+    "webpack-build": "webpack",
     "install": "bower install",
     "test": "grunt",
     "start": "grunt app"
@@ -24,6 +25,15 @@
     "grunt-contrib-qunit": "5.0.1",
     "grunt-contrib-uglify": "5.0.1",
     "grunt-lintspaces": "0.10.0",
-    "grunt-preprocess": "5.1.0"
+    "grunt-preprocess": "5.1.0",
+    "webpack": "^5.51.2",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "backbone": "~1.3.0",
+    "backbone.marionette": "^2.4.1",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.21",
+    "mustache": "^4.2.0"
   }
 }

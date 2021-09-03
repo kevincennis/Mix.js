@@ -1,9 +1,10 @@
-App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
+import App from '../appInstance'
+import { CollectionView } from 'backbone.marionette'
+import _ from 'lodash'
+import Track from './app.views.track'
 
-  'use strict';
-
-  var Tracks = Views.Tracks = Marionette.CollectionView.extend({
-    itemView: Views.Track,
+const Tracks = CollectionView.extend({
+    childView: Track,
 
     el: '#mixer',
 
@@ -23,4 +24,4 @@ App.module('Views', function( Views, App, Backbone, Marionette, $, _ ) {
 
   });
 
-});
+export default Tracks

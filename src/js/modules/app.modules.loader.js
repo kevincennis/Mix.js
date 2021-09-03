@@ -1,28 +1,31 @@
-App.module('Loader', function( Loader, App, Backbone, Marionette, $, _ ) {
+import App from '../appInstance'
+import $ from 'jquery'
+class Loader {
+  constructor() {
+    this.$bar = null
+    this.$elem = null
 
-  'use strict';
+    this.updatePercent = this.updatePercent.bind(this)
+  }
 
-  var $elem, $bar, init, bindEvents, updatePercent;
-
-  init = function() {
-    $elem = $('#loader');
-    $bar = $elem.find('.loader-bar');
-    bindEvents();
-  };
-
-  bindEvents = function() {
-    App.vent.on('loaded', updatePercent);
-    App.vent.on('ready', function(){
-      $elem.hide();
+  init() {
+    this.$elem = $('#loader');
+    this.$bar = this.$elem.find('.loader-bar');
+    this.bindEvents();
+  }
+  
+  bindEvents() {
+    App.vent.on('loaded', this.updatePercent);
+    App.vent.on('ready', () => {
+      this.$elem.hide();
     });
-  };
-
-  updatePercent = function() {
+  }
+  
+  updatePercent() {
     var percent = ( ( App.loaded + 1 ) / App.tracks ) * 100;
     percent = Math.min(percent, 100);
-    $bar.css('width', percent + '%');
-  };
+    this.$bar.css('width', percent + '%');
+  } 
+}
 
-  init();
-
-});
+export default Loader

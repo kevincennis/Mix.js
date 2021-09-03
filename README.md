@@ -16,6 +16,12 @@ Documentation (and lots of cleanup) forthcoming.
 ##### Start a local webserver at `http://localhost:8888`
 `npm start`
 
+##### Build for production mode (minified)
+`npm run build`
+
+##### Test
+`npm test`
+
 ### Usage (for... Users)
 
 * Download `mix.js.zip` from the [Releases](https://github.com/kevincennis/Mix.js/releases) page and unzip it

@@ -14,7 +14,7 @@ const Tracks = CollectionView.extend({
 	},
 
 	animTick: function() {
-		App.vent.trigger('anim-tick');
+		App.trigger('anim-tick');
 		window.requestAnimationFrame(this.animTick.bind(this));
 	},
 

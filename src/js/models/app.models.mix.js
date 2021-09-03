@@ -36,9 +36,9 @@ var Mix = Model.extend({
 		this.createNodes();
 		this.setGain();
 		this.updatePosition();
-		App.vent.on('solo', this.soloMute.bind(this));
-		App.vent.on('unsolo', this.soloMute.bind(this));
-		App.vent.on('anim-tick', this.updatePosition.bind(this));
+		App.on('solo', this.soloMute.bind(this));
+		App.on('unsolo', this.soloMute.bind(this));
+		App.on('anim-tick', this.updatePosition.bind(this));
 		this.on('change:gain', this.setGain, this);
 		this.on('change:gain', this.persist, this);
 	},
@@ -88,7 +88,7 @@ var Mix = Model.extend({
 	pause: function() {
 		this.get('tracks').pause();
 		this.set('playing', false);
-		App.vent.trigger('mix-pause');
+		App.trigger('mix-pause');
 		return this;
 	},
 

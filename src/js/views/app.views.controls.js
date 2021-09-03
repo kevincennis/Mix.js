@@ -1,9 +1,17 @@
-import { ItemView } from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import * as Utils from '../utils/app.util'
 import App from '../appInstance'
 
-var Controls = ItemView.extend({
-	template: '#tmpl-controls',
+var Controls = View.extend({
+	template: `
+    <canvas class="clock" width="360" height="120"></canvas>
+      <div class="buttons">
+        <button class="btn-cntrl start"></button>
+        <button class="btn-cntrl rw"></button>
+        <button class="btn-cntrl play {{playing}}"></button>
+        <button class="btn-cntrl ff"></button>
+      </div>
+  `,
 
 	el: '#controls',
 
@@ -28,7 +36,7 @@ var Controls = ItemView.extend({
 
 	initialize: function() {
 		this.unhide();
-		App.vent.on('anim-tick', function() {
+		App.on('anim-tick', function() {
 			this.updatePosition();
 		}.bind(this));
 		this.render();
@@ -89,7 +97,7 @@ var Controls = ItemView.extend({
 	},
 
 	updatePosition: function() {
-		var canvas = this.ui.clock[0],
+		var canvas = this.getUI('clock')[0],
 			ctx = canvas.getContext('2d'),
 			pos = this.model.attributes.position,
 			str = Utils.formatTime(pos),

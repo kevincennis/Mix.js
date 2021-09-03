@@ -1,11 +1,29 @@
 import App from '../appInstance'
-import { ItemView } from 'backbone.marionette'
+import { View } from 'backbone.marionette'
 import $ from 'jquery'
 import _ from 'lodash'
 import * as Utils from '../utils/app.util'
 
-var Track = ItemView.extend({
-	template: '#tmpl-track',
+var Track = View.extend({
+	template: `
+    <div>
+      <button class="btn mute {{muted}}">M</button>
+      <button class="btn solo {{soloed}}">S</button>
+      <button class="btn afl {{afl}}">PFL</button>
+      <div class="pan">
+        <div class="panner"
+          style="-webkit-transform: rotate({{pan}}deg);
+          -moz-transform: rotate({{pan}}deg);">
+          <div class="pan-indicator"></div>
+        </div>
+      </div>
+      <div class="track">
+        <canvas class="meter" width="8" height="280"></canvas>
+        <div class="fader" style="top: {{gain}}px;"></div>
+      </div>
+      <p class="label">{{name}}</p>
+    </div>
+  `,
 
 	events: {
 		'mousedown .fader'   : 'enableDrag',
@@ -33,10 +51,10 @@ var Track = ItemView.extend({
 	},
 
 	initialize: function() {
-		App.vent.on('mixer-mouseup', this.disableDrag.bind(this));
-		App.vent.on('mixer-mousemove', this.dragHandler.bind(this));
-		App.vent.on('anim-tick', this.drawMeter.bind(this));
-		App.vent.on('mix-pause', function() {
+		App.on('mixer-mouseup', this.disableDrag.bind(this));
+		App.on('mixer-mousemove', this.dragHandler.bind(this));
+		App.on('anim-tick', this.drawMeter.bind(this));
+		App.on('mix-pause', function() {
 			setTimeout(function(){
 				this.drawMeter();
 			}.bind(this), 50);
@@ -49,7 +67,7 @@ var Track = ItemView.extend({
 	},
 
 	onRender: function() {
-		var canvas = this.ui.canvas[0],
+		var canvas = this.getUI('canvas')[0],
 			height = canvas.height,
 			width = canvas.width,
 			hue = 180,
@@ -200,9 +218,9 @@ var Track = ItemView.extend({
 	},
 
 	drawMeter: function() {
-		if ( typeof this.ui.canvas !== 'string' ) {
+		if ( typeof this.getUI('canvas') !== 'string' ) {
 			this.model.levels();
-			var canvas = this.ui.canvas[0],
+			var canvas = this.getUI('canvas')[0],
 				ctx = canvas.getContext('2d'),
 				dBFS = this.model.attributes.dBFS,
 				gain = this.model.attributes.gain,

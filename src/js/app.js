@@ -1,5 +1,6 @@
 import App from './appInstance'
 import * as Marionette from 'backbone.marionette'
+import { View, CollectionView } from 'backbone.marionette';
 import Tracks from './views/app.views.tracks'
 import Controls from './views/app.views.controls'
 import Mustache from 'mustache'
@@ -8,10 +9,13 @@ import * as Utils from './utils/app.util'
 import $ from 'jquery'
 
 // use mustache
-var tmplCache = Marionette.TemplateCache;
-tmplCache.prototype.compileTemplate = function( rawTemplate ) {
-	return Mustache.render.bind(this, rawTemplate)
-};
+
+function renderer(template, data, ...rest){
+	return Mustache.render(template, data)
+}
+
+View.setRenderer(renderer)
+CollectionView.setRenderer(renderer)
 
 function bindEvents() {
 	$(document).on('keyup', function( ev ) {
@@ -47,18 +51,18 @@ function bindEvents() {
 		}
 	});
 	$(window).on('mousemove touchmove', function( ev ) {
-		App.vent.trigger('mixer-mousemove', ev);
+		App.trigger('mixer-mousemove', ev);
 		if ( ev.type === 'touchmove' ) {
 			ev.preventDefault();
 		}
 	});
 	$(window).on('mouseup touchend', function( ev ) {
-		App.vent.trigger('mixer-mouseup', ev);
+		App.trigger('mixer-mouseup', ev);
 	});
 	$('#master .fader').on( 'mousedown touchstart', App.enableDrag );
 	$('#master .fader').on( 'dblclick', App.resetFader );
-	App.vent.on('mixer-mouseup', App.disableDrag );
-	App.vent.on('mixer-mousemove', App.dragHandler );
+	App.on('mixer-mouseup', App.disableDrag );
+	App.on('mixer-mousemove', App.dragHandler );
 }
 
 // config
@@ -70,18 +74,18 @@ App.vuLeftData = [];
 App.vuRightData = [];
 
 // wait for all tracks to be loaded
-App.vent.on('loaded', function() {
+App.on('loaded', function() {
 	var top;
 	if ( ++App.loaded === App.tracks ) {
 		App.ready = true;
-		App.vent.trigger('ready');
+		App.trigger('ready');
 		top = Utils.scale( Mix.get('gain'), 0, 1.5, 314, 0 );
 		$('#master .fader').css( 'top', top + 'px' );
 	}
 });
 
 // Build tracks collection view
-App.vent.on('ready', function() {
+App.on('ready', function() {
 	App.trackViews = new Tracks({
 		collection: Mix.attributes.tracks
 	});
@@ -98,7 +102,7 @@ App.vent.on('ready', function() {
 });
 
 // rAF loop for meters
-App.vent.on('anim-tick', function() {
+App.on('anim-tick', function() {
 	var left, right;
 	if ( !App.vuLeft || !App.vuRight || window.innerWidth <= 1200 ) {
 		return;

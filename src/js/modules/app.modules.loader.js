@@ -15,8 +15,8 @@ class Loader {
 	}
   
 	bindEvents() {
-		App.vent.on('loaded', this.updatePercent);
-		App.vent.on('ready', () => {
+		App.on('loaded', this.updatePercent);
+		App.on('ready', () => {
 			this.$elem.hide();
 		});
 	}

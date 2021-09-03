@@ -103,7 +103,7 @@ var Track = Model.extend({
 		Utils.fetchAudioAsset(this.get('path'), function( buffer ) {
 			this.buffer = buffer;
 			this.set('duration', buffer.duration);
-			App.vent.trigger('loaded');
+			App.trigger('loaded');
 		}.bind(this));
 		return this;
 	},
@@ -167,14 +167,14 @@ var Track = Model.extend({
 		this.unmute();
 		this._unmute();
 		this.set('soloed', true);
-		App.vent.trigger('solo');
+		App.trigger('solo');
 		return this;
 	},
 
 	// unsolo the track
 	unsolo: function(){
 		this.set('soloed', false);
-		App.vent.trigger('unsolo');
+		App.trigger('unsolo');
 		return this;
 	},
 

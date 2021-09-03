@@ -14,28 +14,16 @@
     "start": "webpack serve --open --config webpack.dev.js"
   },
   "devDependencies": {
-    "bower": "^1.8.10",
-    "eslint": "^7.32.0",
-    "eslint-webpack-plugin": "^3.0.1",
-    "grunt": "1.4.1",
-    "grunt-cli": "1.4.3",
-    "grunt-contrib-concat": "1.0.1",
-    "grunt-contrib-connect": "3.0.0",
-    "grunt-contrib-jshint": "3.0.0",
-    "grunt-contrib-qunit": "5.0.1",
-    "grunt-contrib-uglify": "5.0.1",
-    "grunt-lintspaces": "0.10.0",
-    "grunt-preprocess": "5.1.0",
-    "jshint": "^2.13.1",
-    "jshint-loader": "^0.8.4",
-    "webpack": "^5.51.2",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.0",
-    "webpack-merge": "^5.8.0"
+    "eslint": "~7.32.0",
+    "eslint-webpack-plugin": "~3.0.1",
+    "webpack": "~5.51.2",
+    "webpack-cli": "~4.8.0",
+    "webpack-dev-server": "~4.1.0",
+    "webpack-merge": "~5.8.0"
   },
   "dependencies": {
     "backbone": "~1.3.0",
-    "backbone.marionette": "^2.4.1",
+    "backbone.marionette": "~2.4.1",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "mustache": "^4.2.0"

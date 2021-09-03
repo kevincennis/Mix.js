@@ -4,24 +4,24 @@ import _ from 'lodash'
 import Track from './app.views.track'
 
 const Tracks = CollectionView.extend({
-    childView: Track,
+	childView: Track,
 
-    el: '#mixer',
+	el: '#mixer',
 
-    initialize: function() {
-      this.animTick();
-      this.unhide();
-    },
+	initialize: function() {
+		this.animTick();
+		this.unhide();
+	},
 
-    animTick: function() {
-      App.vent.trigger('anim-tick');
-      window.requestAnimationFrame(this.animTick.bind(this));
-    },
+	animTick: function() {
+		App.vent.trigger('anim-tick');
+		window.requestAnimationFrame(this.animTick.bind(this));
+	},
 
-    unhide: function() {
-      this.$el.css('visibility', 'visible');
-    }
+	unhide: function() {
+		this.$el.css('visibility', 'visible');
+	}
 
-  });
+});
 
 export default Tracks

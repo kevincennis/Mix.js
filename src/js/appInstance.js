@@ -6,6 +6,6 @@ var App = new Application();
 App.ac = (function( w ) {
 	var Ac = w.AudioContext || w.webkitAudioContext || w.mozAudioContext;
 	return new Ac();
-  }(window));
+}(window));
 
 export default App

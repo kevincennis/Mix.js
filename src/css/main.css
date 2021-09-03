@@ -78,7 +78,7 @@ button {
   width: 200px;
   height: 200px;
   position: relative;
-  background: url(../img/vu.png) top left no-repeat;
+  background: url(/public/img/vu.png) top left no-repeat;
 }
 
 .vu:nth-child(1){
@@ -96,7 +96,7 @@ button {
 }
 
 .needle {
-  background: url(../img/needle.png) top left no-repeat;
+  background: url(/public/img/needle.png) top left no-repeat;
   height: 51px;
   left: 54px;
   position: absolute;
@@ -319,26 +319,26 @@ button {
 }
 
 .start {
-  background-image: url("../img/single_rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/single_rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/single_rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/single_rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/single_rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/single_rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 6px 9px,100%;
   margin-left: 16px;
   padding: 9px 14px;
 }
 
 .rw {
-  background-image: url("../img/rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/rewind@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/rewind@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/rewind@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 12px 9px,100%;
   padding: 9px 14px;
 }
 
 .play {
-  background-image: url("../img/pause@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/pause@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/pause@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/pause@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/pause@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/pause@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 14px 17px,100%;
   border-radius: 50%;
   padding: 18px;
@@ -347,16 +347,16 @@ button {
 }
 
 .play.paused {
-  background-image: url("../img/play@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/play@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/play@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/play@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/play@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/play@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 14px 17px,100%;
 }
 
 .ff {
-  background-image: url("../img/forward@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/forward@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
-  background-image: url("../img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/forward@2x.png"), -webkit-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/forward@2x.png"),    -moz-linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
+  background-image: url("/public/img/forward@2x.png"),         linear-gradient(top,hsl(228, 13%, 92%) 0%,hsl(240, 100%, 100%) 100%);
   background-size: 12px 9px,100%;
   padding: 9px 14px;
 }

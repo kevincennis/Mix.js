@@ -2,10 +2,10 @@
 
 @font-face{
   font-family: 'digital-7';
-  src: url("../fonts/digital-7.eot?#iefix") format('embedded-opentype')
-  ,url("../fonts/digital-7.woff") format('woff')
-  ,url("../fonts/digital-7.ttf") format('truetype'),
-  url("../fonts/digital-7.eot#svgFontName") format('svg');
+  src: url("/public/fonts/digital-7.eot?#iefix") format('embedded-opentype')
+  ,url("/public/fonts/digital-7.woff") format('woff')
+  ,url("/public/fonts/digital-7.ttf") format('truetype'),
+  url("/public/fonts/digital-7.eot#svgFontName") format('svg');
   font-weight: normal;
   font-style: normal
 }

@@ -10,6 +10,7 @@ module.exports = {
 			directory: path.join(__dirname, 'public')
 		}
 	},
+	devtool: 'inline-source-map',
 	module: {
 		rules: [
 			{

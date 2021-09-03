@@ -10,27 +10,27 @@ module.exports = function(grunt) {
     // webserver
     connect: require('./build/config/connect'),
     // whitespace rules
-    lintspaces: require('./build/config/lintspaces'),
+    // lintspaces: require('./build/config/lintspaces'),
     // JS linting
-    jshint: require('./build/config/jshint'),
+    // jshint: require('./build/config/jshint'),
     // build templated JS files
-    preprocess: require('./build/config/preprocess'),
+    // preprocess: require('./build/config/preprocess'),
     // concatenate tests and fixtures
-    concat: require('./build/config/concat'),
+    // concat: require('./build/config/concat'),
     // minify JS
-    uglify: require('./build/config/uglify'),
+    // uglify: require('./build/config/uglify'),
     // testing config
     qunit: require('./build/config/qunit')
   });
 
   // plugins
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-lintspaces');
-  grunt.loadNpmTasks('grunt-preprocess');
+  // grunt.loadNpmTasks('grunt-contrib-concat');
+  // grunt.loadNpmTasks('grunt-contrib-uglify');
+  // grunt.loadNpmTasks('grunt-contrib-qunit');
+  // grunt.loadNpmTasks('grunt-contrib-jshint');
+  // grunt.loadNpmTasks('grunt-lintspaces');
+  // grunt.loadNpmTasks('grunt-preprocess');
 
   // default task
   grunt.registerTask('default', require('./build/tasks/default'));

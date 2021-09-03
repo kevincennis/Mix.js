@@ -1,7 +1,7 @@
 module.exports = [
-  'lintspaces',
-  'jshint',
-  'preprocess:src',
-  'concat',
-  'uglify'
+  // 'lintspaces',
+  // 'jshint',
+  // 'preprocess:src',
+  // 'concat',
+  // 'uglify'
 ];

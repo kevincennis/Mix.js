@@ -29,7 +29,7 @@ Documentation (and lots of cleanup) forthcoming.
 * Edit `mix.json` to reflect your track names and audio URLs
 * Copy the directory to your webserver
 
-To save a mix, open the dev tools in your browser and enter `JSON.stringify(App.mix.toJSON(), null, ' ')`
+To save a mix, open the dev tools in your browser and enter `JSON.stringify(mix.toJSON(), null, ' ')`
 and copy the output into `mix.json`.
 
 ### Contributing

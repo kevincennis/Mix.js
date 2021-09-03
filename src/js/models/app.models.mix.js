@@ -207,4 +207,5 @@ var Mix = Model.extend({
 });
 
 const instance = new Mix()
+window.mix = instance
 export default instance
